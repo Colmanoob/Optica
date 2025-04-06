@@ -10,41 +10,58 @@
 </head>
 <body>
 
-<!-- Header -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container">
-        <a class="navbar-brand" href="#" onclick="showSection('home')">Optica</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('about-us')">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('contact')">Contact</a></li>
-            </ul>
-            <div class="d-flex">
-                <a href="#" class="mx-3"><i class="fas fa-search"></i></a>
-                <a href="#" class="mx-3"><i class="fas fa-user"></i></a>
-                <a href="#" class="mx-3" onclick="showSection('shopping-cart')">
-                    <i class="fas fa-shopping-cart"></i><span class="cart-count">0</span>
-                </a>
+    
+
+<div class="top-container">
+
+    <!-- Top Bar Section -->
+    <section id="topBar" style="background-color:#000000" class="text-white py-2 topBar">
+        <div class="container">
+            <p class="mb-0 text-center">Get 30% off on Selected Sunglasses</p>
+        </div>
+    </section>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container d-flex justify-content-center">
+            <a class="navbar-brand text-white" href="#" onclick="showSection('home')">
+                <img src="images/Optica Logo.png" alt="Optica Logo" height="50" class="me-2">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="#" onclick="showSection('about-us')">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#" onclick="showSection('contact')">Contact</a></li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="mx-3 text-white"><i class="fas fa-search"></i></a>
+                    <a href="#" class="mx-3 text-white"><i class="fas fa-user"></i></a>
+                    <a href="#" class="mx-3 text-white" onclick="showSection('shopping-cart')">
+                        <i class="fas fa-shopping-cart"></i><span class="cart-count">0</span>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
-
+    </nav>
+</div>
 <!-- Hero Section -->
-<section id="hero" class="hero bg-dark text-white py-5">
-    <div class="container text-center">
-        <h1>Summer Collection 2025</h1>
-        <p>Get 30% off on selected sunglasses</p>
-        <a href="./index.html"><button class="btn btn-light">Shop Now</button></a>
+<section id="hero" class="hero text-white py-5" style="background: url('images/Top banner 2.jpg'); background-size: cover; background-position: center; height: 200%; box-shadow: 0 10px 16px rgba(28, 27, 27, 0.4); filter: grayscale(100%);">
+    <div class="container" style="width: 100%; height: 100%; display: flex; align-items: center; margin-left:100; padding-left: 0; justify-content: center;">
+        <div style="width: 100%; text-align: left;">
+
+            <h1>Frame Your World!</h1>
+            <p>Clear Vision, Stylish Frames—See the World Differently!</p> 
+
+            <a href="#category-container" onclick="showSection('home')"><button class="btn btn-dark">Shop Now</button></a>
+        </div>
     </div>
 </section>
 
 <!-- Categories -->
-<section class="py-5">
-    <div class="container category-container">
+<section class="py-5 category-container" id="category-container">
+    <div class="container">
         <h2 class="mb-4">Shop by Category</h2>
         <div class="row g-4" id="categories">
             <div class="col-md-3 category-card active" data-category="all" onclick="filterByCategory('all')">
@@ -84,7 +101,7 @@
 </section>
 
 <!-- Product Listing -->
-<section class="py-5 bg-light product-container">
+<section class="py-5 product-container" style="background-color: #000000;">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -94,10 +111,8 @@
                         <div class="mb-3">
                             <label class="form-label">Price Range</label>
                             <div class="d-flex align-items-center">
-                                
                                 <input type="number" class="form-control me-2" id="minPrice" min="0" max="300" value="0" placeholder="Min Price" style="width: 100px;">
                                 <span class="me-2">to</span>
-                                
                                 <input type="number" class="form-control" id="maxPrice" min="0" max="300" value="300" placeholder="Max Price" style="width: 100px;">
                             </div>
                             <button class="btn btn-primary mt-2" id="confirmPriceButton" onclick="filterByPrice()" style="width: 100%;">Confirm</button>
@@ -138,31 +153,35 @@
                     <input type="number" id="detailQuantity" class="form-control" value="1" min="1">
                 </div>
                 <button id="addToCartButton" class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
-                <button id="backToProductsButton" class="btn btn-secondary" onclick="goBackToHome()">Back to Products</button>
+                <button id="backToProductsButton" class="btn btn2-primary" onclick="goBackToHome()">Back to Products</button>
             </div>
         </div>
     </div>
 </section>
 
 <!-- About Us Section -->
-<section id="aboutUs" class="py-5" style="display: none;">
+<section id="aboutUs" class="py-5" style="display: none; background-color: #000; color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
     <div class="container">
-        <div class="row">
+        <div class="row d-flex align-items-center">
             <div class="col-md-6">
-                <h2>About Us</h2>
-                <p>Welcome to Optica, your number one source for all things eyewear. We're dedicated to providing you the very best of glasses, with an emphasis on quality, style, and customer service.</p>
-                <p>Founded in 2023, Optica has come a long way from its beginnings. When we first started out, our passion for eyewear drove us to do tons of research, and gave us the impetus to turn hard work and inspiration into a booming online store.</p>
-                <p>We now serve customers all over the country and are thrilled to be a part of the quirky, eco-friendly, fair trade wing of the eyewear industry.</p>
+                <h2>Our Mission</h2>
+                <p>Today, we proudly serve customers across the country, and we are excited to be part of the quirky, eco-friendly, and fair trade segment of the eyewear industry. At Optica, we believe that looking good should not come at the expense of the planet. That’s why we prioritize sustainable materials and ethical practices in our product offerings.</p>
+                
+                <h2>Our Promise</h2>
+                <p>We aim to provide not just glasses, but a complete eyewear experience. Our knowledgeable team is always ready to assist you in finding the perfect pair that reflects your unique style and fits your lifestyle. Whether you’re looking for trendy frames, durable lenses, or specialized eyewear, we have something for everyone.</p>
+                
+                <p>Thank you for choosing Optica. Together, let’s redefine eyewear and make a positive impact on the world. Your vision is our mission!</p>
             </div>
-            <div class="col-md-6">
-                <img src="./images/about-us/about-us.jpg" class="img-fluid" alt="About Us Image">
+            <div class="col-md-6 d-flex">
+                <img src="images\IMG-0567.JPG" class="img-fluid" alt="About Us Image" style="width: 50%;">
+                <img src="images\IMG-0568.JPG" class="img-fluid" alt="About Us Image" style="width: 50%;">
             </div>
         </div>
     </div>
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="py-5" style="display: none;">
+<section id="contact" class="py-5" style="display: none; background: linear-gradient(to right, #4b4b4c, #000000); color: white;">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -197,7 +216,7 @@
                         <label for="callbackMessage" class="form-label">Message</label>
                         <textarea class="form-control" id="callbackMessage" rows="3" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" onclick="submitCallbackForm(event)">Request Callback</button>
+                    <button type="submit" class="btn-dark" onclick="submitCallbackForm(event)">Request Callback</button>
                 </form>
             </div>
         </div>
@@ -205,15 +224,15 @@
 </section>
 
 <!-- Shopping Cart Section -->
-<section id="shoppingCart" class="py-5">
+<section id="shoppingCart" class="py-5 shopping-cart-container">
     <div class="container">
         <h2>Your Shopping Cart</h2>
         <div id="cartItems" class="row"></div>
         <div class="mt-4">
             <h4>Total: $<span id="totalPrice">0.00</span></h4>
-            <button id="checkoutButton" class="btn btn-primary" onclick="redirectToCheckout()">Checkout</button>
-            <button class="btn btn-danger" onclick="cancelCart()">Cancel</button>
-            <button class="btn btn-secondary" onclick="goBackToHome()">Back to Home</button>
+            <button id="Checkout" class="btn btn-primary" onclick="redirectToCheckout()">Checkout</button>
+            <button id="Cancel" class="btn btn2-primary" onclick="cancelCart()">Cancel</button>
+            <button id="Back to Home" class="btn btn2-primary" onclick="goBackToHome()">Back to Home</button>
         </div>
     </div>
 </section>
@@ -221,5 +240,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>
 <script src="cart.js"></script>
+<script>
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.body.insertAdjacentHTML('beforeend', data);
+        });
+</script>
 </body>
 </html>

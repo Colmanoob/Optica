@@ -127,7 +127,7 @@ function renderProducts(productsArray) {
                             <span class="badge bg-secondary">${product.category}</span>
                             <span class="text-muted">${product.color}</span>
                         </div>
-                        <button class="btn btn-outline-dark w-100 mt-3 view-detail" 
+                        <button class="btn btn-primary w-100 mt-3 view-detail product-button" 
                            
                             data-id="${product.id}">
                             View Details
@@ -192,9 +192,6 @@ function updatePriceDisplay() {
     priceValueDisplay.textContent = `$${priceRange.value}.00`; // Update the displayed price
 }
 
-
-
-
 function addToCart()
 {
     if (currentProduct) {
@@ -224,9 +221,56 @@ function addToCart()
 }
 
 function submitCallbackForm(event) {
-    event.preventDefault(); // Prevent default form submission
-    alert('Your callback request has been submitted! We will contact you soon.');
-    
-    // Reset the form after submission
-    document.getElementById('callbackForm').reset();
+    event.preventDefault();
+
+    var name = document.getElementById('callbackName').value;
+    var phone = document.getElementById('callbackPhone').value;
+    var email = document.getElementById('callbackEmail').value;
+    var message = document.getElementById('callbackMessage').value;
+
+    // Clear any previous error messages
+    document.querySelectorAll('.error-message').forEach(el => el.remove());
+
+    let hasErrors = false;
+
+    if (!name) {
+        displayError('callbackName', 'Please enter your name.');
+        hasErrors = true;
+    }
+
+    if (!phone) {
+        displayError('callbackPhone', 'Please enter your phone number.');
+        hasErrors = true;
+    }
+
+    if (!email) {
+        displayError('callbackEmail', 'Please enter your email address.');
+        hasErrors = true;
+    } else {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            displayError('callbackEmail', 'Please enter a valid email address.');
+            hasErrors = true;
+        }
+    }
+
+    if (!message) {
+        displayError('callbackMessage', 'Please enter your message.');
+        hasErrors = true;
+    }
+
+    if (hasErrors) {
+        return;
+    }
+
+    alert('Callback requested!');
+}
+
+function displayError(fieldId, errorMessage) {
+    var field = document.getElementById(fieldId);
+    var errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.style.color = '#b45942';
+    errorDiv.innerText = errorMessage;
+    field.parentNode.appendChild(errorDiv);
 }

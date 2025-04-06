@@ -1,5 +1,5 @@
 .virtual-try-on {
-    background: linear-gradient(45deg, #e0e0e0, #f8f9fa);
+    background: linear-gradient(45deg, #f8f8f8, #f8f9fa);
 }
 
 .frame-color-swatch {
@@ -9,16 +9,18 @@
     cursor: pointer;
 }
 
-.sticky-cart-bar {
-    position: fixed;
-    bottom: 0;
-    background: white;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+.top-container
+{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
+
 
 .category-card {
     cursor: pointer;
     transition: transform 0.2s;
+    color: #3f3737; /* New text color for the active category card */
 }
 
 .category-card:hover {
@@ -26,9 +28,9 @@
 }
 
 .category-card.active .card{
-    background-color: #222222;
+    background-color: #333131;
     color: white; /* White text for primary buttons */
-   
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Grey box-shadow */
 }
 
 .category-card.active .text-muted {
@@ -37,10 +39,12 @@
 
 .product-card {
     transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(240, 240, 240, 0.1), 0 0 13px rgb(255, 255, 255);
 }
 
 .product-card:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1), 0 0 20px rgb(255, 255, 255);
 }
 
 .cart-count {
@@ -65,25 +69,63 @@
 /* Add this to your style.css file */
 
 /* Change all buttons to have a white background and black text */
-.btn {
-    background-color: white; /* White background */
-    color: black; /* Black text */
-    border: 1px solid black; /* Black border */
-}
-
-/* Change specific buttons to black */
 .btn-primary {
-    background-color: black; /* Black background for primary buttons */
-    color: white; /* White text for primary buttons */
-    border: 1px solid black; /* Optional: black border */
-}
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000; /* Black text */
+    background: #fff; /* White button */
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 4px 4px 8px rgba(11, 11, 11, 0.2), -4px -4px 8px #ffffff;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 
-.btn:hover
-{
-    background-color: #3b3b3b;
-    color: white; /* White text for primary buttons */
-    border: 1px solid black; /* Optional: black border */
-}
+  .btn:hover {
+    background-color: #000000; /* Darker shade on hover */
+    color: #fff; /* White text on hover */
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.3), inset -3px -3px 6px #020202;
+  }
+  
+  .btn:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+  }
+
+  .btn2-primary {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff; /* White text */
+    background: #fa0505; /* White button */
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 4px 4px 8px rgba(11, 11, 11, 0.2), -4px -4px 8px #ffffff;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn2-primary:hover {
+    background-color: #a89999; /* Darker shade on hover */
+    /* color: #fff; White text on hover */
+    /* box-shadow: inset 3px 3px 6px rgba(117, 116, 116, 0.3), inset -3px -3px 6px #020202; */
+  }
 
 .product-link
 {
@@ -95,6 +137,7 @@
     flex-direction: column; /* Stack elements vertically */
     height: 150px; /* Set a fixed height for uniformity */
     transition: all 0.3s ease;
+    
 }
 
 .product-card img {
@@ -110,6 +153,8 @@
     display: flex; /* Use flexbox for card body */
     flex-direction: column; /* Stack elements vertically */
     justify-content: space-between; /* Space out elements evenly */
+    box-shadow: 0 0 10px rgba(123, 122, 122, 0.5); /* White glowing effect */
+    
 }
 
 .mx-3 {
@@ -117,7 +162,7 @@
 }
 
 .product-container {
-    background-color: #000000; /* Set the background color to light grey */
+    background: linear-gradient(to right, #4f4f4f, #171717, #000000); /* Titanium black gradient */
     padding: 20px; /* Optional: Add some padding for better spacing */
 }
 
@@ -125,5 +170,122 @@
 
     width: auto; /* Maintain aspect ratio */
  
+}
+
+.btn-dark {
+    color: rgb(252, 250, 250);
+    background-color: rgb(42, 41, 41);
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: 0 0 2.5px rgb(37, 37, 37), 0 0 2.5px rgb(197, 196, 196), 0 0 4px rgb(113, 113, 113); /* Reduced glow */
+    transition: box-shadow 0.3s ease; /* Smooth transition for the effect */
+}
+
+.btn-dark:hover {
+    box-shadow: 0 0 5px white, 0 0 4.5px white, 0 0 10px white; /* Reduced glow on hover */
+}
+
+.product-button {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Dark grey shadow */
+}
+
+/* Style to push the footer to the bottom */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.btn-danger.shadow-lg {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000; /* Black text */
+    background: #fff; /* White button */
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(251, 1, 1, 0.874), 4px 4px 8px rgba(11, 11, 11, 0.2), -4px -4px 8px #ffffff;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  
+  }
+
+.btn-danger.shadow-lg:hover {
+    background-color: #a24040;
+    color: #f8f6f6;
+    box-shadow: inset 10px 10px 14px rgba(0, 0, 0, 0.5), inset -10px -10px 16px #020202;
+}
+
+.btn-danger.shadow-lg:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+}
+
+.btn-secondary.shadow-lg:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+}
+
+.btn-danger.shadow-lg:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+    display: block;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: none;
+}
+
+.btn-secondary.shadow-lg:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+    display: block;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: none;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.8; /* Increased initial opacity */
+    }
+
+    20% {
+        transform: scale(1, 1);
+        opacity: 0.8; /* Increased mid opacity */
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(2.5, 2.5); /* Increased final scale */
+    }
 }
 
