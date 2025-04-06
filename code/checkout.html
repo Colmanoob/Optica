@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Optica</a>
+    </div>
+</nav>
+
+<div class="container py-5">
+    <h2>Checkout</h2>
+    <div id="checkoutItems" class="row"></div>
+    <div class="mt-4">
+        <h4>Total: $<span id="checkoutTotalPrice">0.00</span></h4>
+    </div><br>
+    <h4>Contact Information</h4>
+    <form id="contactForm">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="phone" pattern="^\+?\d+$" required>
+        </div>
+        <h4>Delivery Method</h4>
+        <div class="mb-3">
+            <select class="form-select" id="deliveryMethod" required onchange="toggleAddressField()">
+                <option value="" disabled selected>Select Delivery Method</option>
+                <option value="standard">Standard Delivery</option>
+                <option value="express">Express Delivery</option>
+                <option value="pickup">Store Pickup</option>
+            </select>
+        </div>
+
+        <h4>Delivery Date</h4>
+        <div class="mb-3">
+            <label for="deliveryDate" class="form-label">Select Delivery Date</label>
+            <input type="date" class="form-control" id="deliveryDate" required>
+        </div>
+
+        
+        <div class="mb-3" id="addressField">
+        <h4>Delivery Address</h4>
+            <!-- <label for="address" class="form-label">Address</label> -->
+            <textarea class="form-control" id="address" rows="3" required></textarea>
+        </div>
+        <h4>Payment Method</h4>
+        <div class="mb-3">
+            <select class="form-select" id="paymentMethod" required>
+                <option value="" disabled selected>Select Payment Method</option>
+                <option value="creditCard">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="bankTransfer">Bank Transfer</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="completePurchase(event)">Complete Purchase</button>
+        <button type="button" class="btn btn-danger" onclick="cancelCheckout()">Cancel</button>
+    </form>
+</div>
+
+<script src="checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+// const products = [
+//     { id: 1, name: "Ray-Ban RB0840V Mega Wayfarer", price: 129.99, category: "sunglasses", frameType: "metal", color: "gold", quantity: 0, image: "./images/products/1.png" },
+//     { id: 2, name: "Retro Round", price: 89.99, category: "prescription", frameType: "acetate", color: "tortoise", quantity: 0, image: "images/retro-round.jpg" },
+//     { id: 3, name: "Sport Xtreme", price: 159.99, category: "sports", frameType: "plastic", color: "black", quantity: 0, image: "images/sport-xtreme.jpg" },
+//     { id: 4, name: "Kids Sparkle", price: 69.99, category: "kids", frameType: "plastic", color: "pink", quantity: 0, image: "images/kids-sparkle.jpg" },
+//     { id: 5, name: "Designer Cat-Eye", price: 199.99, category: "sunglasses", frameType: "acetate", color: "red", quantity: 0, image: "images/designer-cat-eye.jpg" },
+//     { id: 6, name: "Bifocal Pro", price: 149.99, category: "prescription", frameType: "metal", color: "silver", quantity: 0, image: "images/bifocal-pro.jpg" },
+//     { id: 7, name: "Cycling Goggles", price: 179.99, category: "sports", frameType: "wrap", color: "blue", quantity: 0, image: "images/cycling-goggles.jpg" },
+//     { id: 8, name: "Junior Safety", price: 59.99, category: "kids", frameType: "plastic", color: "blue", quantity: 0, image: "images/junior-safety.jpg" },
+//     { id: 9, name: "Polarized Wayfarer", price: 139.99, category: "sunglasses", frameType: "acetate", color: "black", quantity: 0, image: "images/polarized-wayfarer.jpg" },
+//     { id: 10, name: "Progressive Lenses", price: 299.99, category: "prescription", frameType: "metal", color: "gunmetal", quantity: 0, image: "images/progressive-lenses.jpg" }
+// ];
+let products = []; // Initialize an empty array for products
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let currentProduct = null;
+let activeCategory = 'all'; // Default category
+
+function showSection(section) {
+    // Hide all sections initially
+    document.querySelector('.category-container').style.display = 'none';
+    document.querySelector('.product-container').style.display = 'none';
+    document.getElementById('productDetail').style.display = 'none';
+    document.getElementById('aboutUs').style.display = 'none';
+    document.getElementById('contact').style.display = 'none';
+    document.getElementById('shoppingCart').style.display = 'none'; // Hide shopping cart section
+    document.getElementById('hero').style.display = 'block'; // Hide shopping cart section
+
+    // Show the selected section
+    switch (section) {
+        case "about-us":
+            document.getElementById('aboutUs').style.display = 'block'; // Show About Us section
+            break;
+        case "contact":
+            document.getElementById('contact').style.display = 'block'; // Show Contact section
+            break;
+        case "shopping-cart":
+            document.getElementById('shoppingCart').style.display = 'block'; // Show Shopping Cart section
+            document.getElementById('hero').style.display = 'none'; // Show Shopping Cart section
+            initShoppingCart();
+            break;
+        default:
+            document.querySelector('.category-container').style.display = 'block';
+            document.querySelector('.product-container').style.display = 'block';
+            filterByCategory(activeCategory);
+            break;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('products.json') // Fetch the products from the JSON file
+        .then(response => response.json())
+        .then(data => {
+            products = data; // Assign the fetched data to the products array
+            renderProducts(products); // Render products initially
+            setupModalListeners();
+            updateCartCount();
+            
+            // Ensure the product detail section is hidden initially
+            showSection("home");
+})
+            
+           
+});
+
+function filterProducts(products, category, minPrice, maxPrice) {
+    return products.filter(product => {
+        const isInCategory = category === 'all' || product.category === category;
+        const isInPriceRange = product.price >= minPrice && product.price <= maxPrice;
+        return isInCategory && isInPriceRange;
+    });
+}
+
+function filterByCategory(category) {
+    activeCategory = category; // Update the active category
+
+    // Store current price range
+    const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+    const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+
+    // Filter products based on the selected category and price range
+    const filteredProducts = filterProducts(products, activeCategory, minPrice, maxPrice);
+
+    // Update the display
+    document.getElementById('productDetail').style.display = 'none';
+    document.querySelector('.product-container').style.display = 'block';
+    document.querySelector('.category-container').style.display = 'block';
+    renderProducts(filteredProducts);
+    updateCategoryActiveState(activeCategory);
+}
+
+function filterByPrice() {
+    // Store the currently active category
+    const activeCategory = document.querySelector('.category-card.active').dataset.category;
+
+    // Get the current price range values
+    const minPrice = parseFloat(document.getElementById('minPrice').value) || 0; // Default to 0 if empty
+    const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity; // Default to Infinity if empty
+
+    // Filter products based on the active category and price range
+    const filteredProducts = filterProducts(products, activeCategory, minPrice, maxPrice);
+
+    // Render the filtered products
+    renderProducts(filteredProducts);
+}
+
+function filterByFrameType(frameType) {
+    const isChecked = document.getElementById(`frameType${frameType.charAt(0).toUpperCase() + frameType.slice(1)}`).checked;
+    const filteredProducts = isChecked 
+        ? products.filter(product => product.frameType === frameType) 
+        : products; // If unchecked, show all products
+    renderProducts(filteredProducts);
+}
+
+function renderProducts(productsArray) {
+    const productsGrid = document.querySelector('#productsGrid');
+    productsGrid.innerHTML = ''; // Clear the grid
+
+    productsArray.forEach(product => {
+        const productCard = `
+            <div class="col-md-4 mb-4" id="product-${product.id}"> <!-- Dynamic ID based on product ID -->
+                <div class="card product-card h-100">
+                    <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.name}</h5>
+                        <p class="card-text">$${product.price.toFixed(2)}</p>
+                        <div class="d-flex justify-content-between small">
+                            <span class="badge bg-secondary">${product.category}</span>
+                            <span class="text-muted">${product.color}</span>
+                        </div>
+                        <button class="btn btn-outline-dark w-100 mt-3 view-detail" 
+                           
+                            data-id="${product.id}">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        productsGrid.innerHTML += productCard; // Append the product card to the grid
+    });
+    
+    setupModalListeners(); // Ensure modal listeners are set up for the new cards
+}
+
+function setupModalListeners() {
+    document.querySelectorAll('.view-detail').forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = parseInt(button.dataset.id);
+            currentProduct = products.find(p => p.id === productId);
+            
+            if (currentProduct) {
+                // Update the product detail section with current product information
+                document.getElementById('detailProductName').textContent = currentProduct.name;
+                document.getElementById('detailProductPrice').textContent = `$${currentProduct.price.toFixed(2)}`;
+                document.getElementById('detailProductDescription').textContent = currentProduct.description;
+                document.getElementById('frameTypeValue').textContent = currentProduct.frameType; // Set frame type
+                document.getElementById('colorValue').textContent = currentProduct.color; // Set color
+                document.getElementById('detailQuantity').value = 1;
+                document.getElementById('detailProductImage').src = currentProduct.image;
+
+                // Hide the product grid and show the product detail section
+                document.querySelector('.category-container').style.display = "none";
+                document.querySelector('.product-container').style.display = 'none';
+                document.getElementById('productDetail').style.display = 'block';
+            }
+        });
+    });
+}
+
+
+
+function updateCategoryActiveState(selectedCategory) {
+    document.querySelectorAll('.category-card').forEach(card => {
+        card.classList.remove('active');
+        if (card.dataset.category === selectedCategory) {
+            card.classList.add('active');
+        }
+    });
+}
+
+function updateCartCount() {
+    const cartCount = document.querySelector('.cart-count');
+    cartCount.textContent = cart.length;
+    console.log("cart count: ", cartCount.textContent);
+    cartCount.classList.add('animate__animated', 'animate__bounceIn');
+    setTimeout(() => cartCount.classList.remove('animate__bounceIn'), 1000);
+}
+
+function updatePriceDisplay() {
+    const priceRange = document.getElementById('priceRange');
+    const priceValueDisplay = document.getElementById('priceValue');
+    priceValueDisplay.textContent = `$${priceRange.value}.00`; // Update the displayed price
+}
+
+
+
+
+function addToCart()
+{
+    if (currentProduct) {
+        const quantity = parseInt(document.getElementById('detailQuantity').value);
+        if (quantity > 0) {
+            const existingItem = cart.find(item => item.id === currentProduct.id);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: currentProduct.id,
+                    name: currentProduct.name,
+                    price: currentProduct.price,
+                    quantity: quantity,
+                    image: currentProduct.image, // Ensure the image is included
+                    description: currentProduct.description
+                });
+            }
+            
+            currentProduct.quantity += quantity; // Update the quantity in the product array
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${quantity} ${currentProduct.name} added to cart!`);
+        }
+    }
+}
+
+function submitCallbackForm(event) {
+    event.preventDefault(); // Prevent default form submission
+    alert('Your callback request has been submitted! We will contact you soon.');
+    
+    // Reset the form after submission
+    document.getElementById('callbackForm').reset();
+}

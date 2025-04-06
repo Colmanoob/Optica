@@ -1,0 +1,214 @@
+[
+    {
+        "id": 1,
+        "name": "Ray-Ban RB0840V Mega Wayfarer",
+        "price": 129.99,
+        "category": "men/women",
+        "frameType": "wood",
+        "color": "brown",
+        "quantity": 0,
+        "image": "./images/products/1_1_RB0840V.png",
+        "description": "The Ray-Ban RB0840V Mega Wayfarer is a bold and stylish eyewear option that combines classic design with a modern twist. Featuring a larger frame size, these glasses provide a fashionable oversized look while maintaining the iconic Wayfarer silhouette."
+    },
+    {
+        "id": 2,
+        "name": "Nike 1001C",
+        "price": 89.99,
+        "category": "men/women",
+        "frameType": "acetate",
+        "color": "red",
+        "quantity": 0,
+        "image": "./images/products/2_1_1001C.png",
+        "description": "The Nike 1001C glasses frame is a sleek and modern eyewear option that embodies both style and practicality. Designed for everyday wear, these frames are lightweight and comfortable, making them perfect for long days."
+    },
+    {
+        "id": 3,
+        "name": "Nike 8157",
+        "price": 159.99,
+        "category": "men/women",
+        "frameType": "plastic",
+        "color": "violet",
+        "quantity": 0,
+        "image": "./images/products/3_1_8157.png",
+        "description": "The Nike 8157 glasses frame is a stylish and sporty option designed for those who appreciate functionality and modern design. These frames feature a lightweight construction that ensures comfort for all-day wear."
+    },
+    {
+        "id": 4,
+        "name": "Kent",
+        "price": 69.99,
+        "category": "men/women",
+        "frameType": "plastic",
+        "color": "brown",
+        "quantity": 0,
+        "image": "./images/products/4_1_Kent.png",
+        "description": "A perfect mix of style and everyday ease. Designed for both men and women, these lightweight metal frames feature Italian acetate temple tips and soft acetate nose pads for a comfortable, barely-there feel. "
+    },
+    {
+        "id": 5,
+        "name": "York",
+        "price": 199.99,
+        "category": "men/women",
+        "frameType": "acetate",
+        "color": "brown",
+        "quantity": 0,
+        "image": "./images/products/5_1_york.png",
+        "description": "The York glasses frame combines contemporary design with exceptional comfort. Crafted from high-quality acetate, these frames are lightweight and stylish, making them perfect for both casual and formal occasions."
+    },
+    {
+        "id": 6,
+        "name": "Oakley Flak 2.0 XL RX",
+        "price": 149.99,
+        "category": "men/women",
+        "frameType": "metal",
+        "color": "black",
+        "quantity": 0,
+        "image": "./images/products/6_1_flak.png",
+        "description": "The Oakley Flak 2.0 XL RX is a performance-driven eyewear option designed for athletes and outdoor enthusiasts. With a larger lens design, it offers an expanded field of vision and enhanced peripheral coverage."
+    },
+    {
+        "id": 7,
+        "name": "Oakley Holbrook Rx",
+        "price": 179.99,
+        "category": "men/women",
+        "frameType": "wrap",
+        "color": "black",
+        "quantity": 0,
+        "image": "./images/products/7_1_holbrook.png",
+        "description": "The Oakley Holbrook Rx is a classic, versatile eyewear option that seamlessly blends style and performance. These frames are designed with a lightweight yet durable construction, perfect for everyday wear. "
+    },
+    {
+        "id": 8,
+        "name": "Oakley BMNG SQ",
+        "price": 59.99,
+        "category": "men/women",
+        "frameType": "plastic",
+        "color": "brown",
+        "quantity": 0,
+        "image": "./images/products/8_1_bmng.png",
+        "description": "The Oakley BMNG SQ is a stylish and robust eyewear option designed for individuals who appreciate performance and fashion. With a squared frame shape, this model offers a contemporary look while ensuring a secure fit."
+    },
+    {
+        "id": 9,
+        "name": "York",
+        "price": 139.99,
+        "category": "sunglasses",
+        "frameType": "acetate",
+        "color": "white",
+        "quantity": 0,
+        "image": "./images/products/9_1_york.jpg",
+        "description": "A perfect mix of style and everyday ease. Designed for both men and women, these lightweight metal frames feature Italian acetate temple tips and soft acetate nose pads for a comfortable, barely-there feel. "
+    },
+    {
+        "id": 10,
+        "name": "CATFISH",
+        "price": 299.99,
+        "category": "sunglasses",
+        "frameType": "metal",
+        "color": "gunmetal",
+        "quantity": 0,
+        "image": "./images/products/10_1_catfish.jpg",
+        "description": "A one-of-a-kind trend maker, it frames the look of cult style with its wrapped oval shape and new metallic paint colors."
+    }
+	,
+	    {
+        "id": 11,
+        "name": "UKA-UKA",
+        "price": 299.99,
+        "category": "sunglasses",
+        "frameType": "metal",
+        "color": "dark green",
+        "quantity": 0,
+        "image": "./images/products/11_1_uka.jpg",
+        "description": "UKA-UKA is a trendy, ultra-wrapped frame in bio-plastic with a distinctive, low-profile look. It has a bold, tapered temple with an ARNETTE logo in contrasting colors on a wide \"A-cut\" temple design."
+    },    {
+        "id": 12,
+        "name": "FRESA",
+        "price": 299.99,
+        "category": "sunglasses",
+        "frameType": "metal",
+        "color": "gunmetal",
+        "quantity": 0,
+        "image": "./images/products/12_1_fresa.jpg",
+        "description": "The Fresa Acetate Glasses Frame offers a perfect fusion of elegance and trendiness. Made from high-quality acetate, these frames are lightweight and comfortable for everyday wear."
+    },    {
+        "id": 13,
+        "name": "Fastball 2.0 Acetate Glasses Frame",
+        "price": 299.99,
+        "category": "sunglasses",
+        "frameType": "metal",
+        "color": "black",
+        "quantity": 0,
+        "image": "./images/products/13_1_Acetate.jpg",
+        "description": "The Fastball 2.0 Acetate Glasses Frame is designed for those who embrace an active lifestyle without compromising on style. Crafted from durable, lightweight acetate, these frames feature a sporty yet sophisticated design."
+    },    {
+        "id": 14,
+        "name": "Deya",
+        "price": 299.99,
+        "category": "sunglasses",
+        "frameType": "metal",
+        "color": "gunmetal",
+        "quantity": 0,
+        "image": "./images/products/14_1_deya.jpg",
+        "description": "The Deya Acetate Glasses Frame exudes sophistication and charm. Crafted from high-quality acetate, these frames are lightweight and comfortable, perfect for all-day wear."
+    } ,   {
+        "id": 15,
+        "name": "The Hamie",
+        "price": 299.99,
+        "category": "sunglasses",
+        "frameType": "metal",
+        "color": "gunmetal",
+        "quantity": 0,
+        "image": "./images/products/15_1_hamie.jpg",
+        "description": "Showcases a playful yet chic design, perfect for those who love to express their individuality. Made from premium acetate, these frames are lightweight and comfortable for daily use"
+    } ,   {
+        "id": 16,
+        "name": "Ilum 2.0 ",
+        "price": 299.99,
+        "category": "sunglasses",
+        "frameType": "metal",
+        "color": "gunmetal",
+        "quantity": 0,
+        "image": "./images/products/16_1_ilum.jpg",
+        "description": "The Ilum 2.0 combines modern aesthetics with practical functionality. Crafted from high-quality acetate, these frames are lightweight and durable, ensuring comfort throughout the day."
+    } ,   {
+        "id": 17,
+        "name": "Nike 5060 (Youth) 52 Eyesize",
+        "price": 299.99,
+        "category": "kids",
+        "frameType": "metal",
+        "color": "black",
+        "quantity": 0,
+        "image": "./images/products/17_1_5060.png",
+        "description": "The Nike 5060 (Youth) glasses are designed specifically for younger wearers, combining style, comfort, and durability. With a 52 eye size, these frames provide a perfect fit for kids and teens. "
+    } ,   {
+        "id": 18,
+        "name": "Nike 5061 (Youth) 51 Eyesize",
+        "price": 299.99,
+        "category": "kids",
+        "frameType": "metal",
+        "color": "silver",
+        "quantity": 0,
+        "image": "./images/products/18_1_5061.png",
+        "description": "The Nike 5061 (Youth) glasses are crafted for young adventurers who need a blend of style and functionality. With a 51 eye size, these frames offer a comfortable fit for kids and teens. The lightweight and durable design makes them perfect for active use, whether for sports or everyday wear"
+    } ,   {
+        "id": 19,
+        "name": "POakley Field Day (Youth)",
+        "price": 299.99,
+        "category": "kids",
+        "frameType": "metal",
+        "color": "gunmetal",
+        "quantity": 0,
+        "image": "./images/products/19_1_fieldday.png",
+        "description": "The Oakley Field Day (Youth) glasses are designed specifically for young adventurers who love to play and explore. Featuring a lightweight and durable frame, these glasses provide comfort and a secure fit for active kids"
+    } ,   {
+        "id": 20,
+        "name": "Nike Jolt (Youth)",
+        "price": 299.99,
+        "category": "kids",
+        "frameType": "metal",
+        "color": "blue",
+        "quantity": 0,
+        "image": "./images/products/20_1_jolt.png",
+        "description": "The Nike Jolt (Youth) glasses are designed for energetic young athletes and outdoor enthusiasts. These frames feature a lightweight and durable construction, ensuring they can withstand the rigors of active play. "
+    }  
+]

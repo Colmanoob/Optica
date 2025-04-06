@@ -1,0 +1,129 @@
+.virtual-try-on {
+    background: linear-gradient(45deg, #e0e0e0, #f8f9fa);
+}
+
+.frame-color-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.sticky-cart-bar {
+    position: fixed;
+    bottom: 0;
+    background: white;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.category-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+.category-card.active .card{
+    background-color: #222222;
+    color: white; /* White text for primary buttons */
+   
+}
+
+.category-card.active .text-muted {
+    color: white !important; /* Force text-muted to be white in active category card */
+}
+
+.product-card {
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.cart-count {
+    margin-left: 5px;
+    font-size: 0.8rem;
+    vertical-align: super;
+}
+
+#productModal .modal-dialog {
+    max-width: 800px;
+}
+
+#productModal .modal-body {
+    padding: 2rem;
+}
+
+#productModal img {
+    max-height: 500px;
+    object-fit: contain;
+}
+
+/* Add this to your style.css file */
+
+/* Change all buttons to have a white background and black text */
+.btn {
+    background-color: white; /* White background */
+    color: black; /* Black text */
+    border: 1px solid black; /* Black border */
+}
+
+/* Change specific buttons to black */
+.btn-primary {
+    background-color: black; /* Black background for primary buttons */
+    color: white; /* White text for primary buttons */
+    border: 1px solid black; /* Optional: black border */
+}
+
+.btn:hover
+{
+    background-color: #3b3b3b;
+    color: white; /* White text for primary buttons */
+    border: 1px solid black; /* Optional: black border */
+}
+
+.product-link
+{
+    color: black;
+}
+
+.product-card {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
+    height: 150px; /* Set a fixed height for uniformity */
+    transition: all 0.3s ease;
+}
+
+.product-card img {
+    height: 150px; /* Set a fixed height for images */
+    object-fit: contain; /* Ensure images fit within the box */
+    width: 100%; /* Make images full-width */
+    max-width: 100%; /* Ensure images do not exceed the card width */
+    display: block; /* Remove any inline spacing */
+}
+
+.card-body {
+    flex-grow: 1; /* Allow the body to take up remaining space */
+    display: flex; /* Use flexbox for card body */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: space-between; /* Space out elements evenly */
+}
+
+.mx-3 {
+    color: #3b3b3b; /* Change icon color to black */
+}
+
+.product-container {
+    background-color: #000000; /* Set the background color to light grey */
+    padding: 20px; /* Optional: Add some padding for better spacing */
+}
+
+.product-card img {
+
+    width: auto; /* Maintain aspect ratio */
+ 
+}
+

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optica - Glasses Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+        <a class="navbar-brand" href="#" onclick="showSection('home')">Optica</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('about-us')">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('contact')">Contact</a></li>
+            </ul>
+            <div class="d-flex">
+                <a href="#" class="mx-3"><i class="fas fa-search"></i></a>
+                <a href="#" class="mx-3"><i class="fas fa-user"></i></a>
+                <a href="#" class="mx-3" onclick="showSection('shopping-cart')">
+                    <i class="fas fa-shopping-cart"></i><span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="hero" class="hero bg-dark text-white py-5">
+    <div class="container text-center">
+        <h1>Summer Collection 2025</h1>
+        <p>Get 30% off on selected sunglasses</p>
+        <a href="./index.html"><button class="btn btn-light">Shop Now</button></a>
+    </div>
+</section>
+
+<!-- Categories -->
+<section class="py-5">
+    <div class="container category-container">
+        <h2 class="mb-4">Shop by Category</h2>
+        <div class="row g-4" id="categories">
+            <div class="col-md-3 category-card active" data-category="all" onclick="filterByCategory('all')">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5>All Glasses</h5>
+                        <p class="text-muted">View all products</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 category-card" data-category="men/women" onclick="filterByCategory('men/women')">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5>Men/Women</h5>
+                        <p class="text-muted">Stylish options for everyone</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 category-card" data-category="kids" onclick="filterByCategory('kids')">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5>Kids</h5>
+                        <p class="text-muted">Fun and safe eyewear for children</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 category-card" data-category="sunglasses" onclick="filterByCategory('sunglasses')">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5>Sunglasses</h5>
+                        <p class="text-muted">UV protection styles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Listing -->
+<section class="py-5 bg-light product-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5>Filters</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Price Range</label>
+                            <div class="d-flex align-items-center">
+                                
+                                <input type="number" class="form-control me-2" id="minPrice" min="0" max="300" value="0" placeholder="Min Price" style="width: 100px;">
+                                <span class="me-2">to</span>
+                                
+                                <input type="number" class="form-control" id="maxPrice" min="0" max="300" value="300" placeholder="Max Price" style="width: 100px;">
+                            </div>
+                            <button class="btn btn-primary mt-2" id="confirmPriceButton" onclick="filterByPrice()" style="width: 100%;">Confirm</button>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Frame Type</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="frameTypeRound" onchange="filterByFrameType('round')">
+                                <label class="form-check-label" for="frameTypeRound">Round</label>
+                            </div>
+                            <!-- Add more frame types as needed -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row g-4" id="productsGrid"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Detail Section -->
+<section id="productDetail" class="py-5" style="display: none;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img id="detailProductImage" src="placeholder.png" class="img-fluid" alt="Product Image">
+            </div>
+            <div class="col-md-6">
+                <h2 id="detailProductName">Product Name</h2>
+                <p id="detailProductPrice">$0.00</p>
+                <p id="detailProductDescription">Product description</p>
+                <p id="detailProductFrameType">Frame Type: <span id="frameTypeValue"></span></p> <!-- New Frame Type -->
+                <p id="detailProductColor">Color: <span id="colorValue"></span></p> <!-- New Color -->
+                <div class="mb-3">
+                    <label class="form-label">Quantity</label>
+                    <input type="number" id="detailQuantity" class="form-control" value="1" min="1">
+                </div>
+                <button id="addToCartButton" class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                <button id="backToProductsButton" class="btn btn-secondary" onclick="goBackToHome()">Back to Products</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Us Section -->
+<section id="aboutUs" class="py-5" style="display: none;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>About Us</h2>
+                <p>Welcome to Optica, your number one source for all things eyewear. We're dedicated to providing you the very best of glasses, with an emphasis on quality, style, and customer service.</p>
+                <p>Founded in 2023, Optica has come a long way from its beginnings. When we first started out, our passion for eyewear drove us to do tons of research, and gave us the impetus to turn hard work and inspiration into a booming online store.</p>
+                <p>We now serve customers all over the country and are thrilled to be a part of the quirky, eco-friendly, fair trade wing of the eyewear industry.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="./images/about-us/about-us.jpg" class="img-fluid" alt="About Us Image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5" style="display: none;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Contact Us</h2>
+                <p>Visit us at:</p>
+                <p><strong>Optica Eyewear</strong></p>
+                <p>123 Eyewear Lane</p>
+                <p>Optic City, OC 12345</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Email: contact@optica.com</p>
+                <div id="map" style="height: 300px; width: 100%;">
+                    <!-- Embed Google Map or any map service here -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509123!2d144.9537353153163!3d-37.81627997975157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11f1b3%3A0x5045675218ceed30!2sOptica%20Eyewear!5e0!3m2!1sen!2sau!4v1616161616161!5m2!1sen!2sau" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Send a Callback</h2>
+                <form id="callbackForm">
+                    <div class="mb-3">
+                        <label for="callbackName" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="callbackName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="callbackPhone" class="form-label">Your Phone</label>
+                        <input type="tel" class="form-control" id="callbackPhone" pattern="^\+?\d+$" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="callbackEmail" class="form-label">Your Email</label>
+                        <input type="email" class="form-control" id="callbackEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="callbackMessage" class="form-label">Message</label>
+                        <textarea class="form-control" id="callbackMessage" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="submitCallbackForm(event)">Request Callback</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Shopping Cart Section -->
+<section id="shoppingCart" class="py-5">
+    <div class="container">
+        <h2>Your Shopping Cart</h2>
+        <div id="cartItems" class="row"></div>
+        <div class="mt-4">
+            <h4>Total: $<span id="totalPrice">0.00</span></h4>
+            <button id="checkoutButton" class="btn btn-primary" onclick="redirectToCheckout()">Checkout</button>
+            <button class="btn btn-danger" onclick="cancelCart()">Cancel</button>
+            <button class="btn btn-secondary" onclick="goBackToHome()">Back to Home</button>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script src="cart.js"></script>
+</body>
+</html>
