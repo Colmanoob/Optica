@@ -10,38 +10,42 @@
 </head>
 <body>
 
-<!-- Top Bar Section -->
-<section id="topBar" style="background-color:#000000" class="text-white py-2">
-    <div class="container">
-        <p class="mb-0 text-center">Get 30% off on Selected Sunglasses</p>
-    </div>
-</section>
+    
 
-<!-- Header -->
-<nav class="navbar navbar-expand-lg bg-dark">
-    <div class="container d-flex justify-content-center">
-        <a class="navbar-brand text-white" href="#" onclick="showSection('home')">
-            <img src="images/Optica Logo.png" alt="Optica Logo" height="50" class="me-2">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link text-white" href="#" onclick="showSection('about-us')">About Us</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="#" onclick="showSection('contact')">Contact</a></li>
-            </ul>
-            <div class="d-flex">
-                <a href="#" class="mx-3 text-white"><i class="fas fa-search"></i></a>
-                <a href="#" class="mx-3 text-white"><i class="fas fa-user"></i></a>
-                <a href="#" class="mx-3 text-white" onclick="showSection('shopping-cart')">
-                    <i class="fas fa-shopping-cart"></i><span class="cart-count">0</span>
-                </a>
+<div class="top-container">
+
+    <!-- Top Bar Section -->
+    <section id="topBar" style="background-color:#000000" class="text-white py-2 topBar">
+        <div class="container">
+            <p class="mb-0 text-center">Get 30% off on Selected Sunglasses</p>
+        </div>
+    </section>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container d-flex justify-content-center">
+            <a class="navbar-brand text-white" href="#" onclick="showSection('home')">
+                <img src="images/Optica Logo.png" alt="Optica Logo" height="50" class="me-2">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="#" onclick="showSection('about-us')">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#" onclick="showSection('contact')">Contact</a></li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="mx-3 text-white"><i class="fas fa-search"></i></a>
+                    <a href="#" class="mx-3 text-white"><i class="fas fa-user"></i></a>
+                    <a href="#" class="mx-3 text-white" onclick="showSection('shopping-cart')">
+                        <i class="fas fa-shopping-cart"></i><span class="cart-count">0</span>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
-
+    </nav>
+</div>
 <!-- Hero Section -->
 <section id="hero" class="hero text-white py-5" style="background: url('images/Top banner 2.jpg'); background-size: cover; background-position: center; height: 200%; box-shadow: 0 10px 16px rgba(28, 27, 27, 0.4); filter: grayscale(100%);">
     <div class="container" style="width: 100%; height: 100%; display: flex; align-items: center; margin-left:100; padding-left: 0; justify-content: center;">
@@ -50,14 +54,14 @@
             <h1>Frame Your World!</h1>
             <p>Clear Vision, Stylish Frames—See the World Differently!</p> 
 
-            <a href="./index.html"><button class="btn btn-dark">Shop Now</button></a>
+            <a href="#category-container" onclick="showSection('home')"><button class="btn btn-dark">Shop Now</button></a>
         </div>
     </div>
 </section>
 
 <!-- Categories -->
-<section class="py-5">
-    <div class="container category-container">
+<section class="py-5 category-container" id="category-container">
+    <div class="container">
         <h2 class="mb-4">Shop by Category</h2>
         <div class="row g-4" id="categories">
             <div class="col-md-3 category-card active" data-category="all" onclick="filterByCategory('all')">
@@ -220,7 +224,7 @@
 </section>
 
 <!-- Shopping Cart Section -->
-<section id="shoppingCart" class="">
+<section id="shoppingCart" class="py-5 shopping-cart-container">
     <div class="container">
         <h2>Your Shopping Cart</h2>
         <div id="cartItems" class="row"></div>
