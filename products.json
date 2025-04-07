@@ -62,7 +62,7 @@
         "frameType": "metal",
         "color": "black",
         "quantity": 0,
-        "image": "./images/products/6_1_flak.png",
+        "image": "./images/products/6_1_Flak.png",
         "description": "The Oakley Flak 2.0 XL RX is a performance-driven eyewear option designed for athletes and outdoor enthusiasts. With a larger lens design, it offers an expanded field of vision and enhanced peripheral coverage."
     },
     {
@@ -73,7 +73,7 @@
         "frameType": "wrap",
         "color": "black",
         "quantity": 0,
-        "image": "./images/products/7_1_holbrook.png",
+        "image": "./images/products/7_1_Holbrook.png",
         "description": "The Oakley Holbrook Rx is a classic, versatile eyewear option that seamlessly blends style and performance. These frames are designed with a lightweight yet durable construction, perfect for everyday wear. "
     },
     {
@@ -84,7 +84,7 @@
         "frameType": "plastic",
         "color": "brown",
         "quantity": 0,
-        "image": "./images/products/8_1_bmng.png",
+        "image": "./images/products/8_1_Bmng.png",
         "description": "The Oakley BMNG SQ is a stylish and robust eyewear option designed for individuals who appreciate performance and fashion. With a squared frame shape, this model offers a contemporary look while ensuring a secure fit."
     },
     {
