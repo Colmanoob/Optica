@@ -53,10 +53,8 @@ function showProductDetails(productId) {
         document.getElementById('detailProductImage').src = product.image; // Set product image
 
         // Hide the product grid and show the product detail section
-        showSection("home");
-        document.querySelector('.category-container').style.display = "none";
-        document.querySelector('.product-container').style.display = 'none';
-        document.getElementById('productDetail').style.display = 'block';
+        showSection("product-detail");
+       
     }
 }
 

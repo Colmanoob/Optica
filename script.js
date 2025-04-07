@@ -38,6 +38,10 @@ function showSection(section) {
             document.getElementById('hero').style.display = 'none'; // Show Shopping Cart section
             initShoppingCart();
             break;
+        case "product-detail":
+            document.getElementById('productDetail').style.display = 'block'; // Show Product Detail section
+            document.getElementById('detailQuantity').value = 1; // Reset quantity to 1
+            break;
         default:
             document.querySelector('.category-container').style.display = 'block';
             document.querySelector('.product-container').style.display = 'block';
@@ -158,10 +162,7 @@ function setupModalListeners() {
                 document.getElementById('detailQuantity').value = 1;
                 document.getElementById('detailProductImage').src = currentProduct.image;
 
-                // Hide the product grid and show the product detail section
-                document.querySelector('.category-container').style.display = "none";
-                document.querySelector('.product-container').style.display = 'none';
-                document.getElementById('productDetail').style.display = 'block';
+                showSection("product-detail"); // Show product detail section
             }
         });
     });
