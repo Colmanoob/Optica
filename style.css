@@ -16,6 +16,11 @@
     z-index: 1000;
 }
 
+.navbar-toggler
+{
+    background-color: #b2b2b2;
+}
+
 
 .category-card {
     cursor: pointer;

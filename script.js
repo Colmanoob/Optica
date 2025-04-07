@@ -275,3 +275,4 @@ function displayError(fieldId, errorMessage) {
     errorDiv.innerText = errorMessage;
     field.parentNode.appendChild(errorDiv);
 }
+
