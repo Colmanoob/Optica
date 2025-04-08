@@ -22,6 +22,8 @@ function showSection(section) {
     document.getElementById('productDetail').style.display = 'none';
     document.getElementById('aboutUs').style.display = 'none';
     document.getElementById('contact').style.display = 'none';
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('register').style.display = 'none'; // Hide callback section
     document.getElementById('shoppingCart').style.display = 'none'; // Hide shopping cart section
     document.getElementById('hero').style.display = 'block'; // Hide shopping cart section
 
@@ -32,6 +34,14 @@ function showSection(section) {
             break;
         case "contact":
             document.getElementById('contact').style.display = 'block'; // Show Contact section
+            break;
+        case "login":
+            document.getElementById('login').style.display = 'block'; // Show Login section
+            document.getElementById('hero').style.display = 'none'; // Show Shopping Cart section
+            break;
+        case "register":
+            document.getElementById('register').style.display = 'block'; // Show Register section
+            document.getElementById('hero').style.display = 'none'; // Show Shopping Cart section
             break;
         case "shopping-cart":
             document.getElementById('shoppingCart').style.display = 'block'; // Show Shopping Cart section
@@ -276,3 +286,43 @@ function displayError(fieldId, errorMessage) {
     field.parentNode.appendChild(errorDiv);
 }
 
+// Function to handle login form submission
+function handleLogin(section) {
+   
+
+    const email = document.getElementById(section+'Email').value;
+    const password = document.getElementById(section+'Password').value;
+
+   
+    // Simulate successful login
+    localStorage.setItem('userEmail', email); // Store user email in localStorage
+    if (section === 'register') 
+    {
+        displayUser(document.getElementById('registerName').value); // Display username in the navbar    
+        alert('Registration successful!')
+    }
+    else
+    {
+        displayUser(email.split('@')[0]); // Display username in the navbar
+        alert('Login successful!');
+    }
+    
+    showSection('home'); // Redirect to the home section
+}
+
+
+
+// Function to display the user's email or username in the navbar
+function displayUser(email) {
+    const userDisplay = document.getElementById('userDisplay');
+    userDisplay.textContent = `Welcome, ${email}`;
+    userDisplay.style.display = 'inline'; // Make the user display visible
+}
+
+// Check if a user is already logged in on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const storedEmail = localStorage.getItem('userEmail');
+    if (storedEmail) {
+        displayUser(storedEmail); // Display the stored email in the navbar
+    }
+});

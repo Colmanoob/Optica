@@ -37,15 +37,69 @@
                 </ul>
                 <div class="d-flex">
                     <a href="#" class="mx-3 text-white"><i class="fas fa-search"></i></a>
-                    <a href="#" class="mx-3 text-white"><i class="fas fa-user"></i></a>
+                    <a href="#" class="mx-3 text-white" onclick="showSection('login')">
+                        <i class="fas fa-user"></i>
+                    </a>
                     <a href="#" class="mx-3 text-white" onclick="showSection('shopping-cart')">
                         <i class="fas fa-shopping-cart"></i><span class="cart-count">0</span>
                     </a>
+                    <span id="userDisplay" class="text-white ms-3" style="display: none;"></span> <!-- Placeholder for user info -->
                 </div>
             </div>
         </div>
     </nav>
 </div>
+
+<!-- Login Section -->
+<section id="login" class="py-5" style="display: none; background-color: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center">Login</h2>
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label for="loginEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="loginEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100" onclick="handleLogin('login')">Sign In</button>
+                </form>
+                <p class="text-center mt-3">Don't have an account? <a href="#" onclick="showSection('register')">Register</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Register Section -->
+<section id="register" class="py-5" style="display: none; background-color: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center">Register</h2>
+                <form id="registerForm">
+                    <div class="mb-3">
+                        <label for="registerName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="registerName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="registerEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100" onclick="handleLogin('register')">Register</button>
+                </form>
+                <p class="text-center mt-3">Already have an account? <a href="#" onclick="showSection('login')">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Hero Section -->
 <section id="hero" class="hero text-white py-5" style="background: url('images/Top banner 2.jpg'); background-size: cover; background-position: center; height: 200%; box-shadow: 0 10px 16px rgba(28, 27, 27, 0.4); filter: grayscale(100%);">
     <div class="container" style="width: 100%; height: 100%; display: flex; align-items: center; margin-left:100; padding-left: 0; justify-content: center;">
@@ -230,7 +284,7 @@
         <div id="cartItems" class="row"></div>
         <div class="mt-4">
             <h4>Total: $<span id="totalPrice">0.00</span></h4>
-            <button id="Checkout" class="btn btn-primary" onclick="redirectToCheckout()">Checkout</button>
+            <button id="Checkout" class="btn btn-primary" onclick="redirectToCheckout()">Place Order</button>
             <button id="Cancel" class="btn btn2-primary" onclick="cancelCart()">Cancel</button>
             <button id="Back to Home" class="btn btn2-primary" onclick="goBackToHome()">Back to Home</button>
         </div>
