@@ -23,6 +23,8 @@ function showSection(section) {
     document.getElementById('productDetail').style.display = 'none';
     document.getElementById('aboutUs').style.display = 'none';
     document.getElementById('contact').style.display = 'none';
+    document.getElementById('makingGlasses').style.display = 'none';
+    document.getElementById('makingSunglasses').style.display = 'none';
     document.getElementById('login').style.display = 'none';
     document.getElementById('register').style.display = 'none'; // Hide callback section
     document.getElementById('shoppingCart').style.display = 'none'; // Hide shopping cart section
@@ -35,6 +37,12 @@ function showSection(section) {
             break;
         case "contact":
             document.getElementById('contact').style.display = 'block'; // Show Contact section
+            break;
+        case "making-glasses":
+            document.getElementById('makingGlasses').style.display = 'block'; // Show Our Team section
+            break;
+        case "making-sunglasses":
+            document.getElementById('makingSunglasses').style.display = 'block'; // Show Our Process section
             break;
         case "login":
             document.getElementById('login').style.display = 'block'; // Show Login section

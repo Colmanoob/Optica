@@ -33,10 +33,20 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link text-white" href="#" onclick="showSection('about-us')">About Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-white dropdown-toggle" href="#" id="behindTheScenesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Behind the Scenes
+                        </a>
+                        <ul class="dropdown-menu bg-dark" aria-labelledby="behindTheScenesDropdown">
+                            <li><a class="dropdown-item text-white" href="#" onclick="showSection('making-glasses')">Making Glasses</a></li>
+                            <li><a class="dropdown-item text-white" href="#" onclick="showSection('making-sunglasses')">Making Sunglasses</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link text-white" href="#" onclick="showSection('contact')">Contact</a></li>
+                    
                 </ul>
                 <div class="d-flex">
-                    <a href="#" class="mx-3 text-white"><i class="fas fa-search"></i></a>
+                    
                     <a href="#" class="mx-3 text-white" onclick="showSection('login')">
                         <i class="fas fa-user"></i>
                     </a>
@@ -49,6 +59,9 @@
         </div>
     </nav>
 </div>
+
+
+
 
 <!-- Login Section -->
 <section id="login" class="py-5" style="display: none; background-color: #f8f9fa;">
@@ -113,6 +126,33 @@
     </div>
 </section>
 
+<!-- Our Team Section -->
+<section id="makingGlasses" class="py-5 makingGlassesSection" style="display: none; background: linear-gradient(to right, #4b4b4c, #000000); color: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/hM-1ORvapCs?si=AvZXGdSltZ0Z62PY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-6">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Process Section -->
+<section id="makingSunglasses" class="py-5 makingSunglassesSection" style="display: none; background: linear-gradient(to right, #4b4b4c, #000000); color: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/FiIaaMM8rms?si=cvCmiJ8P2q3KHMFe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-6">
+                
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Categories -->
 <section class="py-5 category-container" id="category-container">
     <div class="container">
