@@ -9,13 +9,18 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">Optica</a>
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container d-flex justify-content-center">
+        <a class="navbar-brand text-white" href="./index.html" onclick="showSection('home')">
+            <img src="images/Optica Logo.png" alt="Optica Logo" height="50" class="me-2">
+        </a>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+           
+        </div>
     </div>
 </nav>
-
-<div class="container py-5">
+<div class="container py-5 place-order-container">
     <h2>Place Order</h2>
     <div id="checkoutItems" class="row"></div>
     <div class="mt-4">
@@ -67,7 +72,7 @@
             </select>
         </div>
         <button type="submit" class="btn btn-primary" onclick="completePurchase(event)">Complete Purchase</button>
-        <button type="button" class="btn btn-danger" onclick="cancelCheckout()">Cancel</button>
+        <button type="button" class="btn btn2-primary" onclick="cancelCheckout()">Cancel</button>
     </form>
 </div>
 

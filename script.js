@@ -14,6 +14,7 @@ let products = []; // Initialize an empty array for products
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let currentProduct = null;
 let activeCategory = 'all'; // Default category
+let activeFrameType = 'all'; // Default frame type
 
 function showSection(section) {
     // Hide all sections initially
@@ -55,7 +56,10 @@ function showSection(section) {
         default:
             document.querySelector('.category-container').style.display = 'block';
             document.querySelector('.product-container').style.display = 'block';
-            filterByCategory(activeCategory);
+
+            const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+            const maxPrice = parseFloat(document.getElementById('maxPrice').value) || 300;
+            filterByProducts(products,activeCategory,minPrice,maxPrice,activeFrameType); // Filter products based on the selected category and price range
             break;
     }
 }
@@ -76,53 +80,53 @@ document.addEventListener('DOMContentLoaded', () => {
            
 });
 
-function filterProducts(products, category, minPrice, maxPrice) {
-    return products.filter(product => {
-        const isInCategory = category === 'all' || product.category === category;
-        const isInPriceRange = product.price >= minPrice && product.price <= maxPrice;
-        return isInCategory && isInPriceRange;
-    });
-}
-
-function filterByCategory(category) {
-    activeCategory = category; // Update the active category
-
-    // Store current price range
-    const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
-    const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
-
-    // Filter products based on the selected category and price range
-    const filteredProducts = filterProducts(products, activeCategory, minPrice, maxPrice);
-
-    // Update the display
-    document.getElementById('productDetail').style.display = 'none';
-    document.querySelector('.product-container').style.display = 'block';
-    document.querySelector('.category-container').style.display = 'block';
-    renderProducts(filteredProducts);
-    updateCategoryActiveState(activeCategory);
-}
-
-function filterByPrice() {
-    // Store the currently active category
-    const activeCategory = document.querySelector('.category-card.active').dataset.category;
-
+// Unified filter function to apply all active filters
+function applyFilters() {
     // Get the current price range values
     const minPrice = parseFloat(document.getElementById('minPrice').value) || 0; // Default to 0 if empty
     const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity; // Default to Infinity if empty
 
-    // Filter products based on the active category and price range
-    const filteredProducts = filterProducts(products, activeCategory, minPrice, maxPrice);
+    // Get the selected frame type
+    const frameTypeCheckboxes = document.querySelectorAll('.form-check-input');
+    const selectedFrameType = Array.from(frameTypeCheckboxes).find(checkbox => checkbox.checked)?.id.replace('frameType', '').toLowerCase() || 'all';
+
+    // Filter products based on the active category, price range, and frame type
+    const filteredProducts = products.filter(product => {
+        const isInCategory = activeCategory === 'all' || product.category === activeCategory;
+        const isInPriceRange = product.price >= minPrice && product.price <= maxPrice;
+        const isInFrameType = selectedFrameType === 'all' || product.frameType === selectedFrameType;
+        return isInCategory && isInPriceRange && isInFrameType;
+    });
 
     // Render the filtered products
     renderProducts(filteredProducts);
 }
 
+// Filter by category
+function filterByCategory(category) {
+    activeCategory = category; // Update the active category
+    applyFilters(); // Apply all filters
+    updateCategoryActiveState(activeCategory); // Update the active state of the category
+}
+
+// Filter by price
+function filterByPrice() {
+    applyFilters(); // Apply all filters
+}
+
+// Filter by frame type
 function filterByFrameType(frameType) {
-    const isChecked = document.getElementById(`frameType${frameType.charAt(0).toUpperCase() + frameType.slice(1)}`).checked;
-    const filteredProducts = isChecked 
-        ? products.filter(product => product.frameType === frameType) 
-        : products; // If unchecked, show all products
-    renderProducts(filteredProducts);
+    // Get all frame type checkboxes
+    const frameTypeCheckboxes = document.querySelectorAll('.form-check-input');
+
+    // Uncheck all other checkboxes except the one that was clicked
+    frameTypeCheckboxes.forEach(checkbox => {
+        if (checkbox.id !== `frameType${frameType.charAt(0).toUpperCase() + frameType.slice(1)}`) {
+            checkbox.checked = false;
+        }
+    });
+
+    applyFilters(); // Apply all filters
 }
 
 function renderProducts(productsArray) {
