@@ -287,8 +287,16 @@ function displayError(fieldId, errorMessage) {
 }
 
 // Function to handle login form submission
-function handleLogin(section) {
-   
+function handleLogin(section, event) {
+    event.preventDefault();
+    
+    // Check if the form is valid
+    const form = document.getElementById(section+'Form');
+    if (!form.checkValidity()) {
+        // If the form is not valid, show validation messages
+        form.reportValidity();
+        return; // Stop further execution
+    }
 
     const email = document.getElementById(section+'Email').value;
     const password = document.getElementById(section+'Password').value;

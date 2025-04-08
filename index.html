@@ -65,7 +65,7 @@
                         <label for="loginPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" id="loginPassword" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100" onclick="handleLogin('login')">Sign In</button>
+                    <button type="submit" class="btn btn-primary w-100" onclick="handleLogin('login',event)">Sign In</button>
                 </form>
                 <p class="text-center mt-3">Don't have an account? <a href="#" onclick="showSection('register')">Register</a></p>
             </div>
@@ -92,7 +92,7 @@
                         <label for="registerPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" id="registerPassword" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100" onclick="handleLogin('register')">Register</button>
+                    <button type="submit" class="btn btn-primary w-100" onclick="handleLogin('register',event)">Register</button>
                 </form>
                 <p class="text-center mt-3">Already have an account? <a href="#" onclick="showSection('login')">Sign In</a></p>
             </div>
