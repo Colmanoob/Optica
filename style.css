@@ -170,6 +170,8 @@
     border: none;
     box-shadow: 0 0 2.5px rgb(197, 196, 196), 0 0 2.5px rgb(37, 37, 37), 0 0 4px rgb(113, 113, 113); /* Reduced glow */
     transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition for the effect */
+    --bs-btn-active-bg: #4d5154;
+    --bs-btn-active-color: #fff;
 }
 
 .btn:hover
@@ -178,6 +180,7 @@
     background-color: #292929;
     box-shadow: 0 0 5px rgb(0, 0, 0), 0 0 4.5px rgb(0, 0, 0);
 }
+
 
 .btn-dark {
     color: rgb(252, 250, 250);
