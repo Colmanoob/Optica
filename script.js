@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function applyFilters() {
     // Get the current price range values
     const minPrice = parseFloat(document.getElementById('minPrice').value) || 0; // Default to 0 if empty
-    const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity; // Default to Infinity if empty
+    const maxPrice = parseFloat(document.getElementById('maxPrice').value) || 300; // Default to Infinity if empty
 
     // Get the selected frame type
     const frameTypeCheckboxes = document.querySelectorAll('.form-check-input');
@@ -140,8 +140,14 @@ function renderProducts(productsArray) {
     productsGrid.innerHTML = ''; // Clear the grid
 
     productsArray.forEach(product => {
+        const discountPercentage = product.discountedPrice
+            ? Math.round((Math.abs(product.price - product.discountedPrice) / product.discountedPrice) * 100)
+            : null;
+
         const priceDisplay = product.discountedPrice
-            ? `<span class="text-dark">$${product.price.toFixed(2)}</span> <small class="text-muted text-decoration-line-through">$${product.discountedPrice.toFixed(2)}</small>`
+            ? `<span class="text-dark">$${product.price.toFixed(2)}</span> 
+               <small class="text-muted text-decoration-line-through">$${product.discountedPrice.toFixed(2)}</small>
+               ${discountPercentage ? `<span class="badge bg-dark ms-2">${discountPercentage}% OFF</span>` : ''}`
             : `$${product.price.toFixed(2)}`;
 
         const productCard = `
