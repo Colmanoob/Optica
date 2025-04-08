@@ -33,10 +33,13 @@ function completePurchase(event) {
 
 function cancelCheckout() {
     // Clear the cart from local storage
-    localStorage.removeItem('cart');
+    if (confirm('Are you sure you want to cancel the checkout?')) {
+        localStorage.removeItem('cart');
     
-    // Redirect to the home page
-    window.location.href = "./index.html"; // Change this to your home page URL if different
+        // Redirect to the home page
+        window.location.href = "./index.html"; // Change this to your home page URL if different
+    }
+    
 }
 
 function renderCheckoutItems() {

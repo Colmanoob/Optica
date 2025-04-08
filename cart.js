@@ -83,12 +83,13 @@ function removeFromCart(productId) {
 }
 
 function cancelCart() {
+    if (confirm('Are you sure you want to cancel your cart?')) {
     cart = [];
     localStorage.setItem('cart', JSON.stringify(cart)); // Update local storage
     updateTotalPrice();
     updateCartCount();
     goBackToHome();
-    
+    }
   }
 
   function goBackToHome() {
