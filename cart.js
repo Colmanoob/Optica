@@ -17,6 +17,7 @@ function renderCartItems() {
 
     cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
+
         const cartItem = `
             <div class="col-md-4 mb-4">
                 <div class="card product-card h-100">
@@ -38,6 +39,8 @@ function renderCartItems() {
         `;
         cartItemsContainer.innerHTML += cartItem; // Append the cart item to the container
     });
+
+    updateTotalPrice(); // Update the total price
 }
 
 function showProductDetails(productId) {
@@ -67,7 +70,7 @@ function updateQuantity(index, quantity) {
     updateTotalPrice();
   }
 
-function updateTotalPrice() {
+  function updateTotalPrice() {
     const totalPriceElement = document.getElementById('totalPrice');
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     totalPriceElement.textContent = total.toFixed(2);
@@ -84,11 +87,11 @@ function removeFromCart(productId) {
 
 function cancelCart() {
     if (confirm('Are you sure you want to cancel your cart?')) {
-    cart = [];
-    localStorage.setItem('cart', JSON.stringify(cart)); // Update local storage
-    updateTotalPrice();
-    updateCartCount();
-    goBackToHome();
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart)); // Update local storage
+        updateTotalPrice();
+        updateCartCount();
+        goBackToHome();
     }
   }
 

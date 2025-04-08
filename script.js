@@ -57,9 +57,8 @@ function showSection(section) {
             document.querySelector('.category-container').style.display = 'block';
             document.querySelector('.product-container').style.display = 'block';
 
-            const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
-            const maxPrice = parseFloat(document.getElementById('maxPrice').value) || 300;
-            filterByProducts(products,activeCategory,minPrice,maxPrice,activeFrameType); // Filter products based on the selected category and price range
+            
+            applyFilters(); // Apply filters when showing the home section
             break;
     }
 }
@@ -68,16 +67,23 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('products.json') // Fetch the products from the JSON file
         .then(response => response.json())
         .then(data => {
-            products = data; // Assign the fetched data to the products array
+            // Update the price to the discounted price if it exists
+            products = data.map(product => {
+                if (product.discountedPrice) {
+                    const price = product.price;
+                    product.price = product.discountedPrice; // Set price to discounted price
+                    product.discountedPrice = price; // Store original price in discountedPrice
+                }
+                return product;
+            });
+
             renderProducts(products); // Render products initially
             setupModalListeners();
             updateCartCount();
-            
+
             // Ensure the product detail section is hidden initially
             showSection("home");
-})
-            
-           
+        });
 });
 
 // Unified filter function to apply all active filters
@@ -134,19 +140,22 @@ function renderProducts(productsArray) {
     productsGrid.innerHTML = ''; // Clear the grid
 
     productsArray.forEach(product => {
+        const priceDisplay = product.discountedPrice
+            ? `<span class="text-dark">$${product.price.toFixed(2)}</span> <small class="text-muted text-decoration-line-through">$${product.discountedPrice.toFixed(2)}</small>`
+            : `$${product.price.toFixed(2)}`;
+
         const productCard = `
             <div class="col-md-4 mb-4" id="product-${product.id}"> <!-- Dynamic ID based on product ID -->
                 <div class="card product-card h-100">
                     <img src="${product.image}" class="card-img-top" alt="${product.name}">
                     <div class="card-body">
                         <h5 class="card-title">${product.name}</h5>
-                        <p class="card-text">$${product.price.toFixed(2)}</p>
+                        <p class="card-text">${priceDisplay}</p>
                         <div class="d-flex justify-content-between small">
                             <span class="badge bg-secondary">${product.category}</span>
                             <span class="text-muted">${product.color}</span>
                         </div>
                         <button class="btn btn-primary w-100 mt-3 view-detail product-button" 
-                           
                             data-id="${product.id}">
                             View Details
                         </button>
@@ -156,7 +165,7 @@ function renderProducts(productsArray) {
         `;
         productsGrid.innerHTML += productCard; // Append the product card to the grid
     });
-    
+
     setupModalListeners(); // Ensure modal listeners are set up for the new cards
 }
 
