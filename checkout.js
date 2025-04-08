@@ -52,19 +52,23 @@ function renderCheckoutItems() {
     }
 
     cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+
         const checkoutItem = `
             <div class="col-md-4 mb-4">
                 <div class="card product-card h-100">
                     <div class="card-body">
                         <h5 class="card-title">${item.name}</h5>
                         <p class="card-text">$${item.price.toFixed(2)} x ${item.quantity}</p>
-                        <p class="card-text">Subtotal: $${(item.price * item.quantity).toFixed(2)}</p>
+                        <p class="card-text">Subtotal: $${itemTotal.toFixed(2)}</p>
                     </div>
                 </div>
             </div>
         `;
         checkoutItemsContainer.innerHTML += checkoutItem;
     });
+
+    updateCheckoutTotalPrice(); // Update the total price
 }
 
 function updateCheckoutTotalPrice() {
