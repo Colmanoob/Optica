@@ -160,7 +160,7 @@ function resetFilters() {
 
     // Reset active category to "all"
     activeCategory = 'all';
-    updateCategoryActiveState(activeCategory); // Update the active state of the category
+    // updateCategoryActiveState(activeCategory); // Update the active state of the category
     applyFilters();
 }
 
@@ -311,6 +311,12 @@ function submitCallbackForm(event) {
     if (!phone) {
         displayError('callbackPhone', 'Please enter your phone number.');
         hasErrors = true;
+    } else {
+        var phoneRegex = /^\+?\d+$/; // Adjust the regex as per your phone number format
+        if (!phoneRegex.test(phone)) {
+            displayError('callbackPhone', 'Please enter a valid phone number.');
+            hasErrors = true;
+        }
     }
 
     if (!email) {
