@@ -80,7 +80,7 @@
 
 .navbar .dropdown-item {
     color: white; /* White text for dropdown items */
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+    transition: background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease; /* Smooth transition for hover effect */
 }
 
 .navbar .dropdown-item:hover {
@@ -216,6 +216,45 @@ footer {
     margin-top: auto;
 }
 
+/* Ensure consistent height for the main image container */
+#detailProductImage {
+    height: 400px; /* Set a fixed height for the main image */
+    object-fit: contain; /* Ensure the image fits within the container without distortion */
+    display: block;
+    margin: 0 auto; /* Center the main image */
+    width: auto; /* Maintain aspect ratio */
+}
+
+/* Ensure consistent height for the main image and thumbnails container */
+.thumbnail-container {
+    margin-top: 20px; /* Add spacing between the main image and thumbnails */
+    display: flex;
+    justify-content: center; /* Center the thumbnails horizontally */
+    align-items: center; /* Align thumbnails vertically */
+    height: 60px; /* Set a fixed height for the thumbnail container */
+}
+
+/* Style for thumbnails */
+.preview-image {
+    width: 80px; /* Set a consistent width for thumbnails */
+    height: 50px; /* Set a consistent height for thumbnails */
+    object-fit: contain; /* Ensure the image fits within the thumbnail box */
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Highlight effect on hover */
+.preview-image:hover {
+    border-color: #4b4b4b; /* Highlight border on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Ensure consistent height for the product detail container */
+#productDetail .row {
+    align-items: center; /* Vertically align the main image and text section */
+    min-height: 500px; /* Set a minimum height for the product detail section */
+}
 /* .place-order-container {
     background: linear-gradient(to right, #1d1d1d, #5f5f5f, #292929);
     color: white;

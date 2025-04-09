@@ -204,36 +204,17 @@ function renderProducts(productsArray) {
     setupModalListeners(); // Ensure modal listeners are set up for the new cards
 }
 
+function changePreviewImage(thumbnail) {
+    const mainImage = document.getElementById('detailProductImage');
+    mainImage.src = thumbnail.src; // Set the main image source to the clicked thumbnail's source
+}
+
 function setupModalListeners() {
     document.querySelectorAll('.view-detail').forEach(button => {
         button.addEventListener('click', () => {
             const productId = parseInt(button.dataset.id);
             showProductDetails(productId); // Show product details when button is clicked
-            // currentProduct = products.find(p => p.id === productId);
-            
-            // if (currentProduct) {
-            //     // Update the product detail section with current product information
-            //     document.getElementById('detailProductName').textContent = currentProduct.name;
-                
-            //     const discountPercentage = currentProduct.discountedPrice
-            //         ? Math.round((Math.abs(currentProduct.price - currentProduct.discountedPrice) / currentProduct.discountedPrice) * 100)
-            //         : null;
-        
-            //     const priceDisplay = currentProduct.discountedPrice
-            //         ? `<span class="text-dark">$${currentProduct.price.toFixed(2)}</span> 
-            //             <small class="text-muted text-decoration-line-through">$${currentProduct.discountedPrice.toFixed(2)}</small>
-            //             ${`<span class="badge bg-dark ms-2">${discountPercentage}% OFF</span>`}`
-            //         : `$${currentProduct.price.toFixed(2)}`;
-
-            //     document.getElementById('detailProductPrice').innerHTML = priceDisplay;
-            //     document.getElementById('detailProductDescription').textContent = currentProduct.description;
-            //     document.getElementById('frameTypeValue').textContent = currentProduct.frameType; // Set frame type
-            //     document.getElementById('colorValue').textContent = currentProduct.color; // Set color
-            //     document.getElementById('detailQuantity').value = 1;
-            //     document.getElementById('detailProductImage').src = currentProduct.image;
-
-            //     showSection("product-detail"); // Show product detail section
-            // }
+    
         });
     });
 }
@@ -247,12 +228,10 @@ function showProductDetails(productId) {
         // Update the product detail section with the product information
         document.getElementById('detailProductName').textContent = product.name;
 
-        // Calculate the discount percentage if applicable
         const discountPercentage = product.discountedPrice
             ? Math.round((Math.abs(product.price - product.discountedPrice) / product.discountedPrice) * 100)
             : null;
 
-        // Display the price with the original price and discount percentage if available
         const priceDisplay = product.discountedPrice
             ? `<span class="text-dark">$${product.price.toFixed(2)}</span> 
                <small class="text-muted text-decoration-line-through">$${product.discountedPrice.toFixed(2)}</small>
@@ -262,12 +241,22 @@ function showProductDetails(productId) {
         document.getElementById('detailProductPrice').innerHTML = priceDisplay;
 
         document.getElementById('detailProductDescription').textContent = product.description;
-        document.getElementById('frameTypeValue').textContent = product.frameType; // Set frame type
-        document.getElementById('colorValue').textContent = product.color; // Set color
+        document.getElementById('frameTypeValue').textContent = product.frameType;
+        document.getElementById('colorValue').textContent = product.color;
         document.getElementById('detailQuantity').value = 1;
-        document.getElementById('detailProductImage').src = product.image; // Set product image
 
-        // Hide the product grid and show the product detail section
+        // Update the main image and thumbnails
+        const mainImage = product.image; // Main image path
+        const baseName = mainImage.replace(/_1_.*\.[a-z]+$/, ''); // Remove `_1_XXX.extension` dynamically
+        const extension = mainImage.split('.').pop(); // Get the file extension (e.g., png, jpg)
+
+        document.getElementById('detailProductImage').src = mainImage; // Set the main image
+
+        const thumbnails = document.querySelectorAll('.preview-image');
+        thumbnails[0].src = `${baseName}_1_${mainImage.split('_1_')[1]}`; // First thumbnail (original)
+        thumbnails[1].src = `${baseName}_2.${extension}`; // Second thumbnail
+        thumbnails[2].src = `${baseName}_3.${extension}`; // Third thumbnail
+
         showSection("product-detail");
     }
 }

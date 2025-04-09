@@ -313,14 +313,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img id="detailProductImage" src="./images/products/1_1_RB0840V.png" class="img-fluid" alt="Product Image">
+                <img id="detailProductImage" src="./images/products/1_1_RB0840V.png" class="img-fluid mb-3" alt="Product Image">
+                <div class="d-flex justify-content-center thumbnail-container">
+                    <!-- Thumbnails -->
+                    <img src="./images/products/1_1_RB0840V.png" class="img-thumbnail mx-1 preview-image" alt="Preview 1" onclick="changePreviewImage(this)">
+                    <img src="./images/products/1_2.png" class="img-thumbnail mx-1 preview-image" alt="Preview 2" onclick="changePreviewImage(this)">
+                    <img src="./images/products/1_3.png" class="img-thumbnail mx-1 preview-image" alt="Preview 3" onclick="changePreviewImage(this)">
+                </div>
             </div>
             <div class="col-md-6">
                 <h2 id="detailProductName">Product Name</h2>
                 <p id="detailProductPrice">$0.00</p>
                 <p id="detailProductDescription">Product description</p>
-                <p id="detailProductFrameType">Frame Type: <span id="frameTypeValue"></span></p> <!-- New Frame Type -->
-                <p id="detailProductColor">Color: <span id="colorValue"></span></p> <!-- New Color -->
+                <p id="detailProductFrameType">Frame Type: <span id="frameTypeValue"></span></p>
+                <p id="detailProductColor">Color: <span id="colorValue"></span></p>
                 <div class="mb-3">
                     <label class="form-label">Quantity</label>
                     <input type="number" id="detailQuantity" class="form-control" value="1" min="1">
