@@ -160,7 +160,7 @@ function resetFilters() {
 
     // Reset active category to "all"
     activeCategory = 'all';
-    
+    updateCategoryActiveState(activeCategory); // Update the active state of the category
     applyFilters();
 }
 
