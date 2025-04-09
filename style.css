@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'Stratum2-regular';
+    src: url('./fonts/stratum2-regular-webfont.ttf') format('truetype');
+    font-weight: 400; /* Regular weight */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Stratum2-medium';
+    src: url('./fonts/stratum2-medium-webfont.ttf') format('truetype');
+    font-weight: 500; /* Medium weight */
+    font-style: normal;
+}
+
 .virtual-try-on {
     background: linear-gradient(45deg, #f8f8f8, #f8f9fa);
 }
@@ -210,12 +224,34 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: 'Stratum2-medium', sans-serif;
+    font-weight: 500;
+}
+
+.badge
+{
+    font-family: 'Stratum2-regular', sans-serif;
+    font-weight: 400;
 }
 
 footer {
     margin-top: auto;
 }
 
+.credit-card-logo {
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.credit-card-logo:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+    
+}
+
+.credit-card-logo.selected {
+    border-color: #303030; /* Blue border for selected card */
+    transform: scale(1.1); /* Slight zoom effect for selected card */
+}
 /* Ensure consistent height for the main image container */
 #detailProductImage {
     height: 400px; /* Set a fixed height for the main image */

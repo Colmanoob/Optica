@@ -30,7 +30,9 @@ function showSection(section) {
     document.getElementById('register').style.display = 'none'; // Hide callback section
     document.getElementById('shoppingCart').style.display = 'none'; // Hide shopping cart section
     document.getElementById('hero').style.display = 'block'; // Hide shopping cart section
-
+    document.getElementById('termsOfService').style.display = 'none'; // Hide terms of service section
+    document.getElementById('privacyPolicy').style.display = 'none'; // Hide privacy policy section
+    document.getElementById('goodsReturnPolicy').style.display = 'none'; // Hide goods return policy section
     // Show the selected section
     switch (section) {
         case "about-us":
@@ -64,6 +66,18 @@ function showSection(section) {
         case "product-detail":
             document.getElementById('productDetail').style.display = 'block'; // Show Product Detail section
             document.getElementById('detailQuantity').value = 1; // Reset quantity to 1
+            break;
+        case "termsOfService":
+            document.getElementById('termsOfService').style.display = 'block';
+        
+            break;
+        case "privacyPolicy":
+            document.getElementById('privacyPolicy').style.display = 'block';
+         
+            break;
+        case "goodsReturnPolicy":
+            document.getElementById('goodsReturnPolicy').style.display = 'block';
+   
             break;
         default:
             document.querySelector('.category-container').style.display = 'block';

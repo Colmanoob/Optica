@@ -64,13 +64,25 @@
         </div>
         <h4>Payment Method</h4>
         <div class="mb-3">
-            <select class="form-select" id="paymentMethod" required>
+            <select class="form-select" id="paymentMethod" required onchange="toggleAddressField()">
                 <option value="" disabled selected>Select Payment Method</option>
                 <option value="creditCard">Credit Card</option>
                 <option value="paypal">PayPal</option>
                 <option value="bankTransfer">Bank Transfer</option>
             </select>
         </div>
+        
+        <!-- Credit Card Logos Section -->
+        <div id="creditCardLogos" style="display: none; margin-top: 10px; margin-bottom: 20px;">
+            <h5>Select a Credit Card:</h5>
+            <div class="credit-card-options d-flex">
+                <img src="images/payment/visa.png" alt="Visa" class="credit-card-logo" data-card="Visa" style="width: 50px; margin-right: 10px; cursor: pointer;">
+                <img src="images/payment/master.png" alt="MasterCard" class="credit-card-logo" data-card="MasterCard" style="width: 50px; margin-right: 10px; cursor: pointer;">
+                <img src="images/payment/ae.png" alt="American Express" class="credit-card-logo" data-card="American Express" style="width: 50px; margin-right: 10px; cursor: pointer;">
+            </div>
+            <p id="selectedCardMessage" style="margin-top: 10px; font-size: 0.9rem; color: #555;"></p>
+        </div>
+        
         <button type="submit" class="btn btn-dark" onclick="completePurchase(event)">Complete Purchase</button>
         <button type="button" class="btn btn2-primary" onclick="cancelCheckout()">Cancel</button>
     </form>
