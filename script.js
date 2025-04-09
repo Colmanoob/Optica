@@ -23,6 +23,7 @@ function showSection(section) {
     document.getElementById('productDetail').style.display = 'none';
     document.getElementById('aboutUs').style.display = 'none';
     document.getElementById('contact').style.display = 'none';
+    document.getElementById('aboutEyeglasses').style.display = 'none';
     document.getElementById('makingGlasses').style.display = 'none';
     document.getElementById('makingSunglasses').style.display = 'none';
     document.getElementById('login').style.display = 'none';
@@ -37,6 +38,9 @@ function showSection(section) {
             break;
         case "contact":
             document.getElementById('contact').style.display = 'block'; // Show Contact section
+            break;
+        case "about-eyeglasses":
+            document.getElementById('aboutEyeglasses').style.display = 'block'; // Show About Eyeglasses section
             break;
         case "making-glasses":
             document.getElementById('makingGlasses').style.display = 'block'; // Show Our Team section
@@ -143,6 +147,23 @@ function filterByFrameType(frameType) {
     applyFilters(); // Apply all filters
 }
 
+function resetFilters() {
+    // Reset price range inputs
+    document.getElementById('minPrice').value = 0;
+    document.getElementById('maxPrice').value = 300;
+
+    // Uncheck all frame type checkboxes
+    const frameTypeCheckboxes = document.querySelectorAll('.form-check-input');
+    frameTypeCheckboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    // Reset active category to "all"
+    activeCategory = 'all';
+    
+    applyFilters();
+}
+
 function renderProducts(productsArray) {
     const productsGrid = document.querySelector('#productsGrid');
     productsGrid.innerHTML = ''; // Clear the grid
@@ -155,7 +176,7 @@ function renderProducts(productsArray) {
         const priceDisplay = product.discountedPrice
             ? `<span class="text-dark">$${product.price.toFixed(2)}</span> 
                <small class="text-muted text-decoration-line-through">$${product.discountedPrice.toFixed(2)}</small>
-               ${discountPercentage ? `<span class="badge bg-dark ms-2">${discountPercentage}% OFF</span>` : ''}`
+               ${`<span class="badge bg-dark ms-2">${discountPercentage}% OFF</span>`}`
             : `$${product.price.toFixed(2)}`;
 
         const productCard = `
@@ -192,7 +213,18 @@ function setupModalListeners() {
             if (currentProduct) {
                 // Update the product detail section with current product information
                 document.getElementById('detailProductName').textContent = currentProduct.name;
-                document.getElementById('detailProductPrice').textContent = `$${currentProduct.price.toFixed(2)}`;
+                
+                const discountPercentage = currentProduct.discountedPrice
+                    ? Math.round((Math.abs(currentProduct.price - currentProduct.discountedPrice) / currentProduct.discountedPrice) * 100)
+                    : null;
+        
+                const priceDisplay = currentProduct.discountedPrice
+                    ? `<span class="text-dark">$${currentProduct.price.toFixed(2)}</span> 
+                        <small class="text-muted text-decoration-line-through">$${currentProduct.discountedPrice.toFixed(2)}</small>
+                        ${`<span class="badge bg-dark ms-2">${discountPercentage}% OFF</span>`}`
+                    : `$${currentProduct.price.toFixed(2)}`;
+
+                document.getElementById('detailProductPrice').innerHTML = priceDisplay;
                 document.getElementById('detailProductDescription').textContent = currentProduct.description;
                 document.getElementById('frameTypeValue').textContent = currentProduct.frameType; // Set frame type
                 document.getElementById('colorValue').textContent = currentProduct.color; // Set color

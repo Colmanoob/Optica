@@ -33,7 +33,7 @@ function completePurchase(event) {
 
 function cancelCheckout() {
     // Clear the cart from local storage
-    if (confirm('Are you sure you want to cancel the checkout?')) {
+    if (confirm('Are you sure you want to cancel the order?')) {
         localStorage.removeItem('cart');
     
         // Redirect to the home page

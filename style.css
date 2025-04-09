@@ -201,6 +201,10 @@
     
 }
 
+#category-container {
+    scroll-margin-top: 100px; /* Adjust this value based on your header height */
+}
+
 /* Style to push the footer to the bottom */
 body {
     min-height: 100vh;
