@@ -242,6 +242,8 @@ function showProductDetails(productId) {
     const product = products.find(p => p.id === productId); // Find the product by ID
 
     if (product) {
+        currentProduct = product; // Set the current product
+
         // Update the product detail section with the product information
         document.getElementById('detailProductName').textContent = product.name;
 
