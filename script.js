@@ -114,31 +114,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Unified filter function to apply all active filters
 function applyFilters() {
-    // Get the current price range values
-    const minPrice = parseFloat(document.getElementById('minPrice').value) || 0; // Default to 0 if empty
-    const maxPrice = parseFloat(document.getElementById('maxPrice').value) || 300; // Default to 300 if empty
-
-    // Get the selected frame type
+    const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+    const maxPrice = parseFloat(document.getElementById('maxPrice').value) || 300;
     const frameTypeCheckboxes = document.querySelectorAll('.frame-type-filter');
     const selectedFrameType = Array.from(frameTypeCheckboxes).find(checkbox => checkbox.checked)?.id.replace('frameType', '').toLowerCase() || 'all';
-
-    // Get the selected brand
     const brandCheckboxes = document.querySelectorAll('.brand-filter');
     const selectedBrand = Array.from(brandCheckboxes).find(checkbox => checkbox.checked)?.value || null;
+    const isDiscountChecked = document.getElementById('discountFilter').checked;
 
-    // Filter products based on all active filters
     const filteredProducts = products.filter(product => {
         const isInCategory = activeCategory === 'all' || product.category === activeCategory;
         const isInPriceRange = product.price >= minPrice && product.price <= maxPrice;
         const isInFrameType = selectedFrameType === 'all' || product.frameType === selectedFrameType;
         const isInBrand = !selectedBrand || product.name.toLowerCase().startsWith(selectedBrand.toLowerCase());
+        const isDiscounted = !isDiscountChecked || product.discountedPrice;
 
-        return isInCategory && isInPriceRange && isInFrameType && isInBrand;
+        return isInCategory && isInPriceRange && isInFrameType && isInBrand && isDiscounted;
     });
 
-    // Render the filtered products
     renderProducts(filteredProducts);
 }
+
 // Filter by category
 function filterByCategory(category) {
     activeCategory = category; // Update the active category
@@ -185,28 +181,40 @@ function filterByBrand(brand) {
 
     applyFilters(); // Apply all filters
 }
+
+function filterByDiscountProducts() {
+    const discountCheckbox = document.getElementById('discountFilter');
+    const isDiscountChecked = discountCheckbox.checked;
+
+    applyFilters(); // Apply all filters
+}
+
+function showSelectedProducts(category) {
+    const discountCheckbox = document.getElementById('discountFilter');
+    discountCheckbox.checked = true; // Check the discount filter checkbox
+    activeCategory = category; // Update the active category
+    updateCategoryActiveState(activeCategory); // Update the active state of the category
+    applyFilters(); // Apply all filters
+    
+
+    
+}
+
 function resetFilters() {
-    // Reset price range inputs
     document.getElementById('minPrice').value = 0;
     document.getElementById('maxPrice').value = 300;
-
-    // Uncheck all frame type checkboxes
     const frameTypeCheckboxes = document.querySelectorAll('.form-check-input');
     frameTypeCheckboxes.forEach(checkbox => {
         checkbox.checked = false;
     });
-
-    // Uncheck all brand checkboxes
     const brandCheckboxes = document.querySelectorAll('.brand-filter');
     brandCheckboxes.forEach(checkbox => {
         checkbox.checked = false;
     });
-
-    // Reset active category to "all"
+    document.getElementById('discountFilter').checked = false; // Reset discount filter
     activeCategory = 'all';
-    updateCategoryActiveState(activeCategory); // Update the active state of the category
-    
-    applyFilters(); // Apply all filters
+    updateCategoryActiveState(activeCategory);
+    applyFilters();
 }
 
 function showCategory(category)
