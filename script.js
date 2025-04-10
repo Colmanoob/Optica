@@ -204,8 +204,17 @@ function resetFilters() {
 
     // Reset active category to "all"
     activeCategory = 'all';
-
+    updateCategoryActiveState(activeCategory); // Update the active state of the category
+    
     applyFilters(); // Apply all filters
+}
+
+function showCategory(category)
+{
+    activeCategory = category; // Update the active category
+    applyFilters(); // Apply all filters
+    updateCategoryActiveState(activeCategory); // Update the active state of the category
+    showSection("home"); // Show the home section
 }
 
 function renderProducts(productsArray) {

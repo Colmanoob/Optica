@@ -17,7 +17,7 @@
     <!-- Top Bar Section -->
     <section id="topBar" style="background-color:#000000" class="text-white py-2 topBar">
         <div class="container">
-            <p class="mb-0 text-center">Get 30% off on Selected Sunglasses</p>
+            <p class="mb-0 text-center"><a href="#product-container" class="top-bar-message" onclick="showCategory('sunglasses')">Get 30% off on Selected Sunglasses</a></p>
         </div>
     </section>
 
@@ -186,12 +186,42 @@
                 <iframe width="100%" height="315" src="https://www.youtube.com/embed/hM-1ORvapCs?si=AvZXGdSltZ0Z62PY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div class="col-lg-6 col-md-12">
-                <h2>What are eyeglasses?</h2>
-                <p>
-                    Eyeglasses are wearable lenses mounted in a frame you wear on your face so you can see better. They do that by correcting refractive errors (like nearsightedness) or other issues that make it hard for you to see properly. Corrective lenses in prescription and reading eyeglasses get their name from how they “correct” your eyesight. They compensate for what your eyes can’t do on their own so you can see clearly.
-
-                    Eyeglasses (often known simply as “glasses” or “spectacles”) can help with a variety of vision issues. That includes difficulty seeing objects up close, far away or at varying distances. They can also help with distortions in your vision, age-related vision difficulties and eye alignment issues.
-                </p>
+                <h2>How Are Glasses Made?</h2>
+               
+                <p>If you wear glasses, you know what a big difference they make to your quality of life. Your first thought every morning may well be, “Where are my glasses?” such is their importance.</p>
+                <p>They’re readily available, they improve the lives of everyone who uses them, and if you break or lose them, you know how to go about getting another pair.</p>
+                <p>Despite being aware of all this, and grateful for their existence, it’s unlikely that you know all of the ins and outs of how they are produced.</p>
+                <p>In this article, we’ll delve into the intricate process of manufacturing glasses, from frame fabrication to lens crafting, explaining how those specs sitting on the bridge of your nose ended up there.</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Creating the Frames</h3>
+                <p>Just as there is a wide variety of eyeglass frame shapes available, there are a number of different frame materials, from metal and plastic to eco-friendly options. Here, we’ll take a look at the processes involved in making acetate frames.</p>
+                <p>Acetate is a plant-based plastic known for its flexibility and hypoallergenic properties, making it a prime material for eyeglass frames. The journey of turning acetate into fashionable frames involves a few crucial steps.</p>
+                <ul>
+                    <li><strong>Cutting, counter-boring and riveting:</strong> High-tech cutting machinery carves out the desired frame shape. Counter-boring creates recesses for hinges, and riveting secures the hinges in place.</li>
+                    <li><strong>Curving, polishing and blasting:</strong> Frames are heated, molded, and polished to achieve a smooth, shiny finish. Blasting creates unique matte finishes or further smooths the frame.</li>
+                    <li><strong>Temple machining and pad printing:</strong> Temples are crafted and refined for comfort, and brands often add their logos using pad printing.</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h3>Manufacturing the Lenses</h3>
+                <p>As important as the frames are, the eyeglass lenses are the most essential part of prescription glasses. The production process is almost entirely automated, using cutting-edge technology and machinery.</p>
+                <ul>
+                    <li><strong>Preparation:</strong> The prescription dictates the lens power, curvature, and type. The appropriate material is chosen based on the prescription.</li>
+                    <li><strong>Blocking:</strong> A protective block is attached to the lens blank to secure it during carving.</li>
+                    <li><strong>Generating:</strong> Computerized machines grind the lens blank to the correct power and curvature.</li>
+                    <li><strong>Polishing and engraving:</strong> Lenses are polished for clarity and may be engraved with tiny markings for alignment.</li>
+                    <li><strong>Tinting and coating:</strong> Lenses may be tinted or coated with anti-reflective, UV-blocking, or scratch-resistant layers.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h3>Lens Fitting</h3>
+                <p>Now that the two main components are ready, it’s time to combine them for the finished product. The frame is gently heated, and the eyeglass lenses are inserted into the groove. This step is commonly performed by an optician, who ensures the lenses are fitted into the customer’s frame of choice.</p>
+                <p>So now you know how glasses are made. If your curiosity still isn’t satisfied, look at some of our other informative articles in our Optical Centre, or ask our opticians if you don’t find the answers you’re looking for there.</p>
             </div>
         </div>
     </div>
@@ -334,9 +364,9 @@
             <div class="col-md-3">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h5>Filters</h5>
+                        <h4 class="filter-header">Filters</h4>
                         <div class="mb-3">
-                            <label class="form-label">Price Range</label>
+                            <label class="form-label filter-label">Price Range</label>
                             <div class="d-flex align-items-center">
                                 <input type="number" class="form-control me-2" id="minPrice" min="0" max="300" value="0" placeholder="Min Price" style="width: 100px;">
                                 <span class="me-2">to</span>
@@ -346,7 +376,7 @@
                         </div>
                        
                         <div class="mb-3">
-                            <label class="form-label">Frame Type</label>
+                            <label class="form-label filter-label">Frame Type</label>
                             <div class="form-check">
                                 <input class="form-check-input frame-type-filter" type="checkbox" id="frameTypeAcetate" onchange="filterByFrameType('acetate')">
                                 <label class="form-check-label" for="frameTypeAcetate">Acetate</label>
@@ -366,7 +396,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <h5>Brand</h5>
+                            <label class="form-label filter-label">Brand</label>
                             <div>
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input brand-filter" value="Nike" onchange="filterByBrand('Nike')"> Nike

@@ -85,6 +85,11 @@
     object-fit: contain;
 }
 
+.top-bar-message
+{
+    all: unset;
+    cursor: pointer;
+}
 /* Dropdown menu styling */
 .navbar .dropdown-menu {
     background-color: #000; /* Match the navbar background */
@@ -120,6 +125,10 @@
     box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.1); /* Add a shadow effect when focused */
 }
 
+.filter-label {
+    
+    font-size: large;
+}
 .product-link, .link
 {
     color: black;
@@ -216,7 +225,7 @@
     
 }
 
-#category-container {
+#category-container, #product-container {
     scroll-margin-top: 100px; /* Adjust this value based on your header height */
 }
 
