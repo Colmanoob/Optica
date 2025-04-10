@@ -268,45 +268,45 @@ function setupModalListeners() {
 }
 
 function showProductDetails(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
+    const product = products.find(p => p.id === productId); // Find the product by ID
 
-    currentProduct = product;
+    if (product) {
+        currentProduct = product; // Set the current product
 
-    updateProductDetailSection(product);
-    updateProductThumbnails(product.image);
+        // Update the product detail section with the product information
+        document.getElementById('detailProductName').textContent = product.name;
 
-    showSection("product-detail");
-}
+        const discountPercentage = product.discountedPrice
+            ? Math.round((Math.abs(product.price - product.discountedPrice) / product.discountedPrice) * 100)
+            : null;
 
-function updateProductDetailSection(product) {
-    document.getElementById('detailProductName').textContent = product.name;
+        const priceDisplay = product.discountedPrice
+            ? `<span class="text-dark">$${product.price.toFixed(2)}</span> 
+               <small class="text-muted text-decoration-line-through">$${product.discountedPrice.toFixed(2)}</small>
+               ${`<span class="badge bg-dark ms-2">${discountPercentage}% OFF</span>`}`
+            : `$${product.price.toFixed(2)}`;
 
-    const discountPercentage = product.discountedPrice
-        ? Math.round((Math.abs(product.price - product.discountedPrice) / product.discountedPrice) * 100)
-        : null;
+        document.getElementById('detailProductPrice').innerHTML = priceDisplay;
 
-    const priceDisplay = product.discountedPrice
-        ? `<span class="text-dark">$${product.price.toFixed(2)}</span> 
-           <small class="text-muted text-decoration-line-through">$${product.discountedPrice.toFixed(2)}</small>
-           ${`<span class="badge bg-dark ms-2">${discountPercentage}% OFF</span>`}`
-        : `$${product.price.toFixed(2)}`;
+        document.getElementById('detailProductDescription').textContent = product.description;
+        document.getElementById('frameTypeValue').textContent = product.frameType;
+        document.getElementById('colorValue').textContent = product.color;
+        document.getElementById('detailQuantity').value = 1;
 
-    document.getElementById('detailProductPrice').innerHTML = priceDisplay;
-    document.getElementById('detailProductDescription').textContent = product.description;
-    document.getElementById('frameTypeValue').textContent = product.frameType;
-    document.getElementById('colorValue').textContent = product.color;
-    document.getElementById('detailQuantity').value = 1;
-}
+        // Update the main image and thumbnails
+        const mainImage = product.image; // Main image path
+        const baseName = mainImage.replace(/_1_.*\.[a-z]+$/, ''); // Remove `_1_XXX.extension` dynamically
+        const extension = mainImage.split('.').pop(); // Get the file extension (e.g., png, jpg)
 
-function updateProductThumbnails(mainImage) {
-    const baseName = mainImage.replace(/_1_.*\.[a-z]+$/, '');
-    const extension = mainImage.split('.').pop();
+        document.getElementById('detailProductImage').src = mainImage; // Set the main image
 
-    const thumbnails = document.querySelectorAll('.preview-image');
-    thumbnails[0].src = `${baseName}_1_${mainImage.split('_1_')[1]}`;
-    thumbnails[1].src = `${baseName}_2.${extension}`;
-    thumbnails[2].src = `${baseName}_3.${extension}`;
+        const thumbnails = document.querySelectorAll('.preview-image');
+        thumbnails[0].src = `${baseName}_1_${mainImage.split('_1_')[1]}`; // First thumbnail (original)
+        thumbnails[1].src = `${baseName}_2.${extension}`; // Second thumbnail
+        thumbnails[2].src = `${baseName}_3.${extension}`; // Third thumbnail
+
+        showSection("product-detail");
+    }
 }
 
 function updateCategoryActiveState(selectedCategory) {
