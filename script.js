@@ -1,15 +1,3 @@
-// const products = [
-//     { id: 1, name: "Ray-Ban RB0840V Mega Wayfarer", price: 129.99, category: "sunglasses", frameType: "metal", color: "gold", quantity: 0, image: "./images/products/1.png" },
-//     { id: 2, name: "Retro Round", price: 89.99, category: "prescription", frameType: "acetate", color: "tortoise", quantity: 0, image: "images/retro-round.jpg" },
-//     { id: 3, name: "Sport Xtreme", price: 159.99, category: "sports", frameType: "plastic", color: "black", quantity: 0, image: "images/sport-xtreme.jpg" },
-//     { id: 4, name: "Kids Sparkle", price: 69.99, category: "kids", frameType: "plastic", color: "pink", quantity: 0, image: "images/kids-sparkle.jpg" },
-//     { id: 5, name: "Designer Cat-Eye", price: 199.99, category: "sunglasses", frameType: "acetate", color: "red", quantity: 0, image: "images/designer-cat-eye.jpg" },
-//     { id: 6, name: "Bifocal Pro", price: 149.99, category: "prescription", frameType: "metal", color: "silver", quantity: 0, image: "images/bifocal-pro.jpg" },
-//     { id: 7, name: "Cycling Goggles", price: 179.99, category: "sports", frameType: "wrap", color: "blue", quantity: 0, image: "images/cycling-goggles.jpg" },
-//     { id: 8, name: "Junior Safety", price: 59.99, category: "kids", frameType: "plastic", color: "blue", quantity: 0, image: "images/junior-safety.jpg" },
-//     { id: 9, name: "Polarized Wayfarer", price: 139.99, category: "sunglasses", frameType: "acetate", color: "black", quantity: 0, image: "images/polarized-wayfarer.jpg" },
-//     { id: 10, name: "Progressive Lenses", price: 299.99, category: "prescription", frameType: "metal", color: "gunmetal", quantity: 0, image: "images/progressive-lenses.jpg" }
-// ];
 let products = []; // Initialize an empty array for products
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let currentProduct = null;
@@ -280,45 +268,45 @@ function setupModalListeners() {
 }
 
 function showProductDetails(productId) {
-    const product = products.find(p => p.id === productId); // Find the product by ID
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
 
-    if (product) {
-        currentProduct = product; // Set the current product
+    currentProduct = product;
 
-        // Update the product detail section with the product information
-        document.getElementById('detailProductName').textContent = product.name;
+    updateProductDetailSection(product);
+    updateProductThumbnails(product.image);
 
-        const discountPercentage = product.discountedPrice
-            ? Math.round((Math.abs(product.price - product.discountedPrice) / product.discountedPrice) * 100)
-            : null;
+    showSection("product-detail");
+}
 
-        const priceDisplay = product.discountedPrice
-            ? `<span class="text-dark">$${product.price.toFixed(2)}</span> 
-               <small class="text-muted text-decoration-line-through">$${product.discountedPrice.toFixed(2)}</small>
-               ${`<span class="badge bg-dark ms-2">${discountPercentage}% OFF</span>`}`
-            : `$${product.price.toFixed(2)}`;
+function updateProductDetailSection(product) {
+    document.getElementById('detailProductName').textContent = product.name;
 
-        document.getElementById('detailProductPrice').innerHTML = priceDisplay;
+    const discountPercentage = product.discountedPrice
+        ? Math.round((Math.abs(product.price - product.discountedPrice) / product.discountedPrice) * 100)
+        : null;
 
-        document.getElementById('detailProductDescription').textContent = product.description;
-        document.getElementById('frameTypeValue').textContent = product.frameType;
-        document.getElementById('colorValue').textContent = product.color;
-        document.getElementById('detailQuantity').value = 1;
+    const priceDisplay = product.discountedPrice
+        ? `<span class="text-dark">$${product.price.toFixed(2)}</span> 
+           <small class="text-muted text-decoration-line-through">$${product.discountedPrice.toFixed(2)}</small>
+           ${`<span class="badge bg-dark ms-2">${discountPercentage}% OFF</span>`}`
+        : `$${product.price.toFixed(2)}`;
 
-        // Update the main image and thumbnails
-        const mainImage = product.image; // Main image path
-        const baseName = mainImage.replace(/_1_.*\.[a-z]+$/, ''); // Remove `_1_XXX.extension` dynamically
-        const extension = mainImage.split('.').pop(); // Get the file extension (e.g., png, jpg)
+    document.getElementById('detailProductPrice').innerHTML = priceDisplay;
+    document.getElementById('detailProductDescription').textContent = product.description;
+    document.getElementById('frameTypeValue').textContent = product.frameType;
+    document.getElementById('colorValue').textContent = product.color;
+    document.getElementById('detailQuantity').value = 1;
+}
 
-        document.getElementById('detailProductImage').src = mainImage; // Set the main image
+function updateProductThumbnails(mainImage) {
+    const baseName = mainImage.replace(/_1_.*\.[a-z]+$/, '');
+    const extension = mainImage.split('.').pop();
 
-        const thumbnails = document.querySelectorAll('.preview-image');
-        thumbnails[0].src = `${baseName}_1_${mainImage.split('_1_')[1]}`; // First thumbnail (original)
-        thumbnails[1].src = `${baseName}_2.${extension}`; // Second thumbnail
-        thumbnails[2].src = `${baseName}_3.${extension}`; // Third thumbnail
-
-        showSection("product-detail");
-    }
+    const thumbnails = document.querySelectorAll('.preview-image');
+    thumbnails[0].src = `${baseName}_1_${mainImage.split('_1_')[1]}`;
+    thumbnails[1].src = `${baseName}_2.${extension}`;
+    thumbnails[2].src = `${baseName}_3.${extension}`;
 }
 
 function updateCategoryActiveState(selectedCategory) {
