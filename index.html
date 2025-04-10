@@ -348,23 +348,41 @@
                         <div class="mb-3">
                             <label class="form-label">Frame Type</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="frameTypeWood" onchange="filterByFrameType('wood')">
-                                <label class="form-check-label" for="frameTypeWood">Wood</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="frameTypeAcetate" onchange="filterByFrameType('acetate')">
+                                <input class="form-check-input frame-type-filter" type="checkbox" id="frameTypeAcetate" onchange="filterByFrameType('acetate')">
                                 <label class="form-check-label" for="frameTypeAcetate">Acetate</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="frameTypePlastic" onchange="filterByFrameType('plastic')">
+                                <input class="form-check-input frame-type-filter" type="checkbox" id="frameTypeMetal" onchange="filterByFrameType('metal')">
+                                <label class="form-check-label" for="frameTypeMetal">Metal</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input frame-type-filter" type="checkbox" id="frameTypePlastic" onchange="filterByFrameType('plastic')">
                                 <label class="form-check-label" for="frameTypePlastic">Plastic</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="frameTypeMetal" onchange="filterByFrameType('metal')">
-                                <label class="form-check-label" for="frameTypeMetal">Metal</label>
+                                <input class="form-check-input frame-type-filter" type="checkbox" id="frameTypeWood" onchange="filterByFrameType('wood')">
+                                <label class="form-check-label" for="frameTypeWood">Wood</label>
                             </div>
                         </div>
-                            
+                        
+                        <div class="mb-3">
+                            <h5>Brand</h5>
+                            <div>
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input brand-filter" value="Nike" onchange="filterByBrand('Nike')"> Nike
+                                </label>
+                            </div>
+                            <div>
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input brand-filter" value="Oakley" onchange="filterByBrand('Oakley')"> Oakley
+                                </label>
+                            </div>
+                            <div>
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input brand-filter" value="Ray-Ban" onchange="filterByBrand('Ray-Ban')"> Ray-Ban
+                                </label>
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <button class="btn btn-secondary mt-2" id="resetFiltersButton" onclick="resetFilters()" style="width: 100%;">Reset Filters</button>
                         </div>
@@ -620,7 +638,7 @@
 
         <h4>Replacement Lenses, Sunglasses, and Eyewear Accessories</h4>
         <p>
-            <a href="#contact" class="btn btn-primary" onclick="showSection('contact')">Start a Return or Exchange</a>
+            <a href="#contact" class="btn btn-dark" onclick="showSection('contact')">Start a Return or Exchange</a>
         </p>
         <p>
             Be sure to have your order number ready. If you don't have this, please <a href="#contact" class="text-white" onclick="showSection('contact')">contact us</a>.

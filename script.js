@@ -116,24 +116,29 @@ document.addEventListener('DOMContentLoaded', () => {
 function applyFilters() {
     // Get the current price range values
     const minPrice = parseFloat(document.getElementById('minPrice').value) || 0; // Default to 0 if empty
-    const maxPrice = parseFloat(document.getElementById('maxPrice').value) || 300; // Default to Infinity if empty
+    const maxPrice = parseFloat(document.getElementById('maxPrice').value) || 300; // Default to 300 if empty
 
     // Get the selected frame type
-    const frameTypeCheckboxes = document.querySelectorAll('.form-check-input');
+    const frameTypeCheckboxes = document.querySelectorAll('.frame-type-filter');
     const selectedFrameType = Array.from(frameTypeCheckboxes).find(checkbox => checkbox.checked)?.id.replace('frameType', '').toLowerCase() || 'all';
 
-    // Filter products based on the active category, price range, and frame type
+    // Get the selected brand
+    const brandCheckboxes = document.querySelectorAll('.brand-filter');
+    const selectedBrand = Array.from(brandCheckboxes).find(checkbox => checkbox.checked)?.value || null;
+
+    // Filter products based on all active filters
     const filteredProducts = products.filter(product => {
         const isInCategory = activeCategory === 'all' || product.category === activeCategory;
         const isInPriceRange = product.price >= minPrice && product.price <= maxPrice;
         const isInFrameType = selectedFrameType === 'all' || product.frameType === selectedFrameType;
-        return isInCategory && isInPriceRange && isInFrameType;
+        const isInBrand = !selectedBrand || product.name.toLowerCase().startsWith(selectedBrand.toLowerCase());
+
+        return isInCategory && isInPriceRange && isInFrameType && isInBrand;
     });
 
     // Render the filtered products
     renderProducts(filteredProducts);
 }
-
 // Filter by category
 function filterByCategory(category) {
     activeCategory = category; // Update the active category
@@ -149,7 +154,7 @@ function filterByPrice() {
 // Filter by frame type
 function filterByFrameType(frameType) {
     // Get all frame type checkboxes
-    const frameTypeCheckboxes = document.querySelectorAll('.form-check-input');
+    const frameTypeCheckboxes = document.querySelectorAll('.frame-type-filter');
 
     // Uncheck all other checkboxes except the one that was clicked
     frameTypeCheckboxes.forEach(checkbox => {
@@ -161,6 +166,25 @@ function filterByFrameType(frameType) {
     applyFilters(); // Apply all filters
 }
 
+function filterByBrand(brand) {
+    // Get all brand checkboxes
+    const brandCheckboxes = document.querySelectorAll('.brand-filter');
+
+    // Uncheck all other checkboxes except the one that was clicked
+    brandCheckboxes.forEach(checkbox => {
+        if (checkbox.value !== brand) {
+            checkbox.checked = false;
+        }
+    });
+
+    // Find the currently selected checkbox
+    const selectedCheckbox = Array.from(brandCheckboxes).find(checkbox => checkbox.checked);
+
+    // Update the active brand based on the selected checkbox
+    const activeBrand = selectedCheckbox ? selectedCheckbox.value : null;
+
+    applyFilters(); // Apply all filters
+}
 function resetFilters() {
     // Reset price range inputs
     document.getElementById('minPrice').value = 0;
@@ -172,10 +196,16 @@ function resetFilters() {
         checkbox.checked = false;
     });
 
+    // Uncheck all brand checkboxes
+    const brandCheckboxes = document.querySelectorAll('.brand-filter');
+    brandCheckboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
     // Reset active category to "all"
     activeCategory = 'all';
-    // updateCategoryActiveState(activeCategory); // Update the active state of the category
-    applyFilters();
+
+    applyFilters(); // Apply all filters
 }
 
 function renderProducts(productsArray) {
