@@ -97,7 +97,7 @@
     transition: background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease; /* Smooth transition for hover effect */
 }
 
-.navbar .dropdown-item:hover {
+.navbar .dropdown-item:hover, .dropdown-item:focus {
     background-color: #292929; /* Darker background on hover */
     color: #fff; /* Keep text white */
     box-shadow: inset 0 0 4.5px rgb(255, 255, 255);
@@ -176,6 +176,7 @@
     transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition for the effect */
     --bs-btn-active-bg: #4d5154;
     --bs-btn-active-color: #fff;
+    --bs-btn-visited-color: #4d5154;
 }
 
 .btn:hover

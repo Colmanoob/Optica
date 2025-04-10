@@ -37,15 +37,29 @@ function completePurchase(event) {
         return; // Stop further execution
     }
     
-    // Get values from the new fields
+    // Get values from the form fields
     const deliveryMethod = document.getElementById('deliveryMethod').value;
     const deliveryDate = document.getElementById('deliveryDate').value;
     const address = deliveryMethod === 'pickup' ? '' : document.getElementById('address').value; // Get address only if not pickup
     const paymentMethod = document.getElementById('paymentMethod').value;
 
+    // Get the selected credit card type if payment method is "Credit Card"
+    let creditCardType = '';
+    if (paymentMethod === 'creditCard') {
+        const selectedCardLogo = document.querySelector('.credit-card-logo.selected');
+        creditCardType = selectedCardLogo ? selectedCardLogo.getAttribute('data-card') : 'Unknown Card';
+    }
+
     // Notify the user that the purchase is complete
-    alert(`Purchase complete!\nDelivery Method: ${deliveryMethod}\nDelivery Date: ${deliveryDate}\nAddress: ${address}\nPayment Method: ${paymentMethod}`);
-    cancelCheckout();
+    let paymentDetails = `Payment Method: ${paymentMethod}`;
+    if (creditCardType) {
+        paymentDetails += `\nCredit Card Type: ${creditCardType}`;
+    }
+    alert(`Purchase complete!\nDelivery Method: ${deliveryMethod}\nDelivery Date: ${deliveryDate}\nAddress: ${address}\n${paymentDetails}`);
+    
+    // Clear the cart and redirect to the home page
+    localStorage.removeItem('cart');
+    window.location.href = "./index.html"; // Change this to your home page URL if different
 }
 
 function cancelCheckout() {
