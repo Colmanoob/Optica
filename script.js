@@ -192,10 +192,9 @@ function filterByDiscountProducts() {
 function showSelectedProducts(category) {
     const discountCheckbox = document.getElementById('discountFilter');
     discountCheckbox.checked = true; // Check the discount filter checkbox
-    activeCategory = category; // Update the active category
-    updateCategoryActiveState(activeCategory); // Update the active state of the category
-    applyFilters(); // Apply all filters
-    
+  
+    showCategory(category); // Show the selected category
+   
 
     
 }
