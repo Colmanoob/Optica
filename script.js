@@ -16,6 +16,7 @@ function showSection(section) {
     document.getElementById('makingSunglasses').style.display = 'none';
     document.getElementById('login').style.display = 'none';
     document.getElementById('register').style.display = 'none'; // Hide callback section
+    document.getElementById('forgotPassword').style.display = 'none'; // Hide forgot password section
     document.getElementById('shoppingCart').style.display = 'none'; // Hide shopping cart section
     document.getElementById('hero').style.display = 'block'; // Hide shopping cart section
     document.getElementById('termsOfService').style.display = 'none'; // Hide terms of service section
@@ -46,6 +47,10 @@ function showSection(section) {
             document.getElementById('register').style.display = 'block'; // Show Register section
             document.getElementById('hero').style.display = 'none'; // Show Shopping Cart section
             break;
+        case "forgot-password":
+            document.getElementById('forgotPassword').style.display = 'block'; // Show Forgot Password section
+            document.getElementById('hero').style.display = 'none';
+            break;
         case "shopping-cart":
             document.getElementById('shoppingCart').style.display = 'block'; // Show Shopping Cart section
             document.getElementById('hero').style.display = 'none'; // Show Shopping Cart section
@@ -74,8 +79,25 @@ function showSection(section) {
             
             applyFilters(); // Apply filters when showing the home section
             break;
+        
+    }
+    updateBackgroundColor(section); // Update background color based on the section
+}
+
+function updateBackgroundColor(section) {
+    const body = document.body;
+    switch (section) {
+        case 'login':
+        case 'register':
+        case 'forgot-password':
+            body.style.background = "linear-gradient(to right, #4f4f4f, #171717, #000000)"; // Set gradient background
+            break;
+        default:
+            body.style.background = ''; // Reset to default
+            break;
     }
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     fetch('products.json') // Fetch the products from the JSON file
@@ -425,12 +447,8 @@ function displayError(fieldId, errorMessage) {
 function handleLogin(section, event) {
     event.preventDefault();
     
-    // Check if the form is valid
-    const form = document.getElementById(section+'Form');
-    if (!form.checkValidity()) {
-        // If the form is not valid, show validation messages
-        form.reportValidity();
-        return; // Stop further execution
+    if (!formIsValid(section)) {
+        return; // Stop further execution if the form is not valid
     }
 
     const email = document.getElementById(section+'Email').value;
@@ -450,11 +468,56 @@ function handleLogin(section, event) {
         alert('Login successful!');
     }
     
+    document.getElementById(section + 'Form').reset(); // Reset the form
     showSection('home'); // Redirect to the home section
 }
 
+function handleForgotPassword(event) {
+    event.preventDefault();
 
+    if (!formIsValid('forgotPassword')) {
+        return; // Stop further execution if the form is not valid
+    }
 
+    // Clear any previous error messages
+    const errorDiv = document.getElementById('confirmEmailError');
+    if (errorDiv) {
+        errorDiv.remove();
+    }
+
+    // Get the email and confirm email values
+    const email = document.getElementById('forgotPasswordEmail').value;
+    const confirmEmail = document.getElementById('confirmForgotPasswordEmail').value;
+
+    // Check if the emails match
+    if (email !== confirmEmail) {
+        const confirmEmailField = document.getElementById('confirmForgotPasswordEmail');
+        const errorMessage = document.createElement('div');
+        errorMessage.id = 'confirmEmailError';
+        errorMessage.className = 'mt-3';
+        errorMessage.style.color = '#b45942';
+        
+        errorMessage.textContent = 'Email and Confirm Email do not match. Please try again.';
+        confirmEmailField.parentNode.appendChild(errorMessage);
+        return;
+    }
+
+    // Simulate sending a password reset email
+    
+    alert(`A password reset link has been sent to ${email}.`);
+    document.getElementById('forgotPasswordForm').reset();
+    showSection('login'); // Redirect to the login section
+}
+
+function formIsValid(section) {
+    const form = document.getElementById(section+'Form');
+    if (!form.checkValidity()) {
+        // If the form is not valid, show validation messages
+        form.reportValidity();
+        return false; // Stop further execution
+    }
+    return true; // Form is valid
+}
 // Function to display the user's email or username in the navbar
 function displayUser(email) {
     const userDisplay = document.getElementById('userDisplay');

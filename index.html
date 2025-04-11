@@ -81,7 +81,11 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-100" onclick="handleLogin('login',event)">Sign In</button>
                 </form>
-                <p class="text-center mt-3">Don't have an account? <a class="link register-link" href="#" onclick="showSection('register')">Register</a></p>
+                <p class="text-center mt-3 forgot-password-text">
+                    Forgot Password? <a class="link forgot-password-link" href="#" onclick="showSection('forgot-password')">Reset Your Password</a>
+                </p>
+                <p class="text-center mt-0 register-text">Don't have an account? <a class="link register-link" href="#" onclick="showSection('register')">Register</a></p>
+                
             </div>
         </div>
     </div>
@@ -109,6 +113,32 @@
                     <button type="submit" class="btn btn-primary w-100" onclick="handleLogin('register',event)">Register</button>
                 </form>
                 <p class="text-center mt-3">Already have an account? <a class="link login-link" href="#" onclick="showSection('login')">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Forgot Password Section -->
+<section id="forgotPassword" class="py-5" style="display: none; background-color: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center">Forgot Password</h2>
+                <form id="forgotPasswordForm">
+                    <div class="mb-3">
+                        <label for="forgotPasswordEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="forgotPasswordEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmForgotPasswordEmail" class="form-label">Confirm Email</label>
+                        <input type="email" class="form-control" id="confirmForgotPasswordEmail" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100" onclick="handleForgotPassword(event)">Reset Password</button>
+                </form>
+                <p class="text-center mt-3">
+                    Remembered your password? 
+                    <a class="link login-link" href="#" onclick="showSection('login')">Sign In</a>
+                </p>
             </div>
         </div>
     </div>
