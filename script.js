@@ -404,7 +404,7 @@ function submitCallbackForm(event) {
         displayError('callbackPhone', 'Please enter your phone number.');
         hasErrors = true;
     } else {
-        var phoneRegex = /^\+?\d+$/; // Adjust the regex as per your phone number format
+        var phoneRegex = /^\+?\d{8,}$/; // Adjust the regex as per your phone number format
         if (!phoneRegex.test(phone)) {
             displayError('callbackPhone', 'Please enter a valid phone number.');
             hasErrors = true;
@@ -432,6 +432,7 @@ function submitCallbackForm(event) {
     }
 
     alert('Callback requested!');
+    document.getElementById('callbackForm').reset();
 }
 
 function displayError(fieldId, errorMessage) {
